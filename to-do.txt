@@ -1,0 +1,17 @@
+IO
+Lista de Pacientes
+    * Registrar Paciente (e adicionar à fila)
+    * Adicionar procedimento ao Histórico
+    * Desfazer procedimento do Histórico
+    * Listar todos os Pacientes
+Fila de Espera
+    * Mostrar fila de espera
+    * Inserir paciente
+    * Remover paciente (para atendimento ou alta)
+Paciente
+    Nome
+    ID
+    Histórico
+        * Inserir procedimento
+        * Retirar procedimento
+        * Consultar procedimentos
