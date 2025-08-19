@@ -24,6 +24,4 @@
 
   ITEM* pilha_desempilhar(PILHA* pilha);
 
-  bool balanceada(char *sequencia);
-
 #endif 
