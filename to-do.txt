@@ -1,17 +1,20 @@
 IO
-Lista de Pacientes
+Pilha
+Lista encadeada
+Fila
+Lista de Pacientes (lista encadeada)
     * Registrar Paciente (e adicionar à fila)
     * Adicionar procedimento ao Histórico
     * Desfazer procedimento do Histórico
     * Listar todos os Pacientes
-Fila de Espera
+Fila de Espera (fila)
     * Mostrar fila de espera
     * Inserir paciente
     * Remover paciente (para atendimento ou alta)
 Paciente
     Nome
     ID
-    Histórico
+    Histórico (pilha)
         * Inserir procedimento
         * Retirar procedimento
         * Consultar procedimentos
