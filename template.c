@@ -24,5 +24,6 @@ void tad_remover(TAD **tad) {
 void tad_imprimir(const TAD *tad) {
     if (tad != NULL) {
         printf("Valor: %d\n", tad->valor);
+        printf("haha, estou secreto");
     }
 }
