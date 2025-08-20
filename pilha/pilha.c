@@ -121,7 +121,16 @@ NO *pilha_topo(PILHA *p)
 void pilha_apagar(PILHA **p)
 {
     if (*p != NULL)
-    {
+    {   
+        NO* no_temp = pilha_topo(p);
+        NO* no_temp_anterior = no_get_anterior(no_temp);
+
+        while(no_temp != NULL){
+            free(no_temp);
+            no_temp = no_temp_anterior;
+            no_temp_anterior = no_get_anterior(no_temp);
+        }
+
         free(*p);
         *p = NULL;
     }
