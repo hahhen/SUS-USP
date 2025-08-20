@@ -23,10 +23,31 @@ NO* no_get_anterior(NO* no){
     return NULL;
 }
 
+void no_set_anterior(NO* no, NO* anterior){
+    if(no != NULL){
+        no->anterior = anterior;
+    }
+}
+
 void no_remover(NO **no) {
     if (*no != NULL) {
-        free((*no)->valor);
         free(*no);
         *no = NULL;
+    }
+}
+
+void* no_get_valor(NO* no){
+
+    if(no != NULL){
+        return no->valor;
+    }
+
+    return NULL;
+
+}
+
+void no_set_valor(NO* no, void* valor){
+    if(no != NULL){
+        no->valor = valor;
     }
 }
