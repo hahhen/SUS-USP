@@ -5,11 +5,11 @@
 
 typedef struct Paciente PACIENTE;
 
-PACIENTE* paciente_criar(char *nome, int* id);
+PACIENTE* paciente_criar(char *nome, int id);
 
 char *paciente_get_nome(PACIENTE *paciente);
 
-int *paciente_get_id(PACIENTE *paciente);
+int paciente_get_id(PACIENTE *paciente);
 
 bool paciente_adicionar_procedimento(PACIENTE *paciente, char *procedimento);
 

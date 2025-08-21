@@ -7,11 +7,11 @@
 struct Paciente
 {
     char *nome;
-    int *id;
+    int id;
     HISTORICO *historico;
 };
 
-PACIENTE *paciente_criar(char *nome, int *id)
+PACIENTE *paciente_criar(char *nome, int id)
 {
     PACIENTE *paciente = (PACIENTE *)malloc(sizeof(PACIENTE));
     
@@ -25,12 +25,21 @@ PACIENTE *paciente_criar(char *nome, int *id)
         return NULL;
     }
 
-    paciente->nome = nome;
+    paciente->historico = historico_criar();
+
+    paciente->nome = (char*)malloc(strlen(nome)+1);
+
+    if(paciente->nome == NULL){
+        free(paciente->historico);
+        free(paciente);
+        return NULL;
+    }
+
+    strcpy(paciente->nome, nome);
+
     paciente->id = id;
-    paciente->historico = historico;
 
     return paciente;
-    return NULL;
 }
 
 char *paciente_get_nome(PACIENTE *paciente)
@@ -41,10 +50,10 @@ char *paciente_get_nome(PACIENTE *paciente)
     return paciente->nome;
 }
 
-int *paciente_get_id(PACIENTE *paciente)
+int paciente_get_id(PACIENTE *paciente)
 {
     if (paciente == NULL)
-        return NULL;
+        return 0;
 
     return paciente->id;
 }
@@ -84,7 +93,6 @@ void paciente_remover(PACIENTE **paciente)
 
     historico_apagar(&(*paciente)->historico);
     free((*paciente)->nome);
-    free((*paciente)->id);
     free(*paciente);
     *paciente = NULL;
 }

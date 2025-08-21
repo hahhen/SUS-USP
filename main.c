@@ -40,7 +40,7 @@ int main()
 
     printf("%s", paciente_listar_procedimentos(pa));
     printf("%s", paciente_get_nome(pa));
-    printf("%d", *paciente_get_id(pa));
+    printf("%d", paciente_get_id(pa));
 
     // pilha_apagar(&p);
 
