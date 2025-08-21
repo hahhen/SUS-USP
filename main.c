@@ -13,11 +13,8 @@ int main()
     char *a = "fulano";
     char *b = "ciclano";
 
-    int *ia = (int*)malloc(sizeof(int));
-    int *ib = (int*)malloc(sizeof(int));
-
-    *ia = 20;
-    *ib = 32;
+    int ia = 20;
+    int ib = 32;
 
     PACIENTE* pa = paciente_criar(a, ia);
     PACIENTE* pb = paciente_criar(b, ib);    
@@ -42,7 +39,10 @@ int main()
     printf("%s", paciente_get_nome(pa));
     printf("%d", paciente_get_id(pa));
 
-    // pilha_apagar(&p);
+    paciente_remover(&pa);
+    paciente_remover(&pb);
+
+    pilha_apagar(&p);
 
     // historico_inserir(historico, a);
     // historico_inserir(historico, b);

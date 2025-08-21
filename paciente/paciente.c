@@ -17,25 +17,24 @@ PACIENTE *paciente_criar(char *nome, int id)
     
     if(paciente == NULL) return NULL;
 
-    HISTORICO *historico = historico_criar();
+    paciente->nome = (char*)malloc(strlen(nome)+1);
 
-    if(historico == NULL){
+    if(paciente->nome == NULL){
         free(paciente);
         paciente = NULL;
         return NULL;
     }
 
+    strcpy(paciente->nome, nome);
+
     paciente->historico = historico_criar();
 
-    paciente->nome = (char*)malloc(strlen(nome)+1);
-
-    if(paciente->nome == NULL){
-        free(paciente->historico);
+    if(paciente->historico == NULL){
+        free(paciente->nome);
         free(paciente);
+        paciente = NULL;
         return NULL;
     }
-
-    strcpy(paciente->nome, nome);
 
     paciente->id = id;
 
