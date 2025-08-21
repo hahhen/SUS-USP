@@ -18,7 +18,6 @@ PILHA *pilha_criar()
     {
         p->tamanho = 0;
         p->topo = NULL;
-
     }
 
     return p;
@@ -38,16 +37,16 @@ bool pilha_cheia(PILHA *p)
 {
     if (p != NULL)
     {
-        
-        NO* tentativa = no_criar(NULL, NULL);
 
-        if(tentativa == NULL){
+        NO *tentativa = no_criar(NULL, NULL);
+
+        if (tentativa == NULL)
+        {
             return true;
         }
 
         free(tentativa);
         return false;
-
     }
 
     return false;
@@ -64,12 +63,13 @@ int pilha_tamanho(PILHA *p)
     return -1;
 }
 
-bool pilha_empilhar(PILHA *p, void* valor)
+bool pilha_empilhar(PILHA *p, void *valor)
 {
 
-    NO* no = no_criar(valor, NULL);
+    NO *no = no_criar(valor, NULL);
 
-    if(no == NULL) return false;
+    if (no == NULL)
+        return false;
 
     if ((p != NULL) && (!pilha_cheia(p)))
     {
@@ -94,7 +94,7 @@ void *pilha_desempilhar(PILHA *p)
 
         no = pilha_topo(p);
 
-        void* no_valor = no_get_valor(no);
+        void *no_valor = no_get_valor(no);
 
         p->topo = no_get_anterior(no);
 
@@ -120,19 +120,29 @@ NO *pilha_topo(PILHA *p)
 
 void pilha_apagar(PILHA **p)
 {
-    if (*p != NULL)
-    {   
-        NO* no_temp = pilha_topo(p);
-        NO* no_temp_anterior = no_get_anterior(no_temp);
+    if (*p == NULL || pilha_vazia(*p))
+        return;
 
-        while(no_temp != NULL){
-            free(no_temp);
-            no_temp = no_temp_anterior;
-            no_temp_anterior = no_get_anterior(no_temp);
-        }
+    NO *no_temp = pilha_topo(*p);
+    // NO* no_temp_anterior = no_get_anterior(no_temp);
 
-        free(*p);
-        *p = NULL;
+    // while(no_temp != NULL){
+    //     free(no_temp);
+    //     no_temp = no_temp_anterior;
+    //     no_temp_anterior = no_get_anterior(no_temp);
+    // }
+
+    while ((*p)->topo != NULL)
+    {
+        no_temp = (*p)->topo;
+        // printf("valor_no: %s ", no_get_valor(no_temp));
+        (*p)->topo = no_get_anterior(no_temp);
+        no_remover(&no_temp);
+        no_set_anterior(no_temp, NULL);
+        free(no_temp);
+        no_temp = NULL;
     }
-}
 
+    free(*p);
+    *p = NULL;
+}
