@@ -14,15 +14,22 @@ struct Paciente
 PACIENTE *paciente_criar(char *nome, int *id)
 {
     PACIENTE *paciente = (PACIENTE *)malloc(sizeof(PACIENTE));
-    HISTORICO *historico = historico_criar();
-    if (paciente != NULL && historico != NULL)
-    {
-        paciente->nome = nome;
-        paciente->id = id;
-        paciente->historico = historico;
+    
+    if(paciente == NULL) return NULL;
 
-        return paciente;
+    HISTORICO *historico = historico_criar();
+
+    if(historico == NULL){
+        free(paciente);
+        paciente = NULL;
+        return NULL;
     }
+
+    paciente->nome = nome;
+    paciente->id = id;
+    paciente->historico = historico;
+
+    return paciente;
     return NULL;
 }
 
@@ -64,8 +71,8 @@ char *paciente_listar_procedimentos(PACIENTE *paciente)
     if (paciente == NULL || paciente->historico == NULL)
         return NULL;
 
-        // printf("paciente_listar_procedimentos: debug\n");
-    char* res = historico_listar(paciente->historico);
+    // printf("paciente_listar_procedimentos: debug\n");
+    char *res = historico_listar(paciente->historico);
 
     return res;
 }
