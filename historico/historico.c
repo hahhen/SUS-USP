@@ -30,8 +30,8 @@ void historico_apagar(HISTORICO **historico)
 {
     if (*historico != NULL)
     {
-        while(pilha_topo((*historico)->h) != NULL){
-            
+        while (pilha_topo((*historico)->h) != NULL)
+        {
         }
         free(*historico);
         *historico = NULL;
@@ -65,9 +65,10 @@ char *historico_concatenar(char *d, char *s)
 
     size_t s_total = s_d + s_s + 1;
 
-    char* res = (char*)malloc(s_total);
+    char *res = (char *)malloc(s_total);
 
-    if(res == NULL) return NULL;
+    if (res == NULL)
+        return NULL;
 
     strcpy(res, d);
     strcat(res, s);
@@ -75,18 +76,64 @@ char *historico_concatenar(char *d, char *s)
     return res;
 }
 
+char *historico_concatenar2(HISTORICO *historico)
+{
+
+    size_t s_total = 0;
+
+    NO *no = pilha_topo(historico->h);
+
+    char* br = "\n";
+
+    // printf("historico_concatenar2: debug\n");
+
+    while (no != NULL)
+    {
+        s_total += sizeof(no_get_valor(no));
+        no = no_get_anterior(no);
+    }
+
+    s_total += (size_t)pilha_tamanho(historico->h);
+    s_total++;
+
+    char *res = (char *)calloc((int)s_total, s_total);
+
+    if (res == NULL)
+        return NULL;
+
+    no = pilha_topo(historico->h);
+
+    while (no != NULL)
+    {
+        strcat(res, no_get_valor(no));
+        strcat(res, br);
+        no = no_get_anterior(no);
+    }
+
+    return res;
+}
+
 char *historico_listar(HISTORICO *historico)
 {
 
-    NO* no = pilha_topo(historico->h);
-    char* lista = "";
-    char* br = "\n";
+    NO *no = pilha_topo(historico->h);
+    char *lista = "";
 
-    while(no != NULL){
-        lista = historico_concatenar(lista, no_get_valor(no));
-        no = no_get_anterior(no);
-        if(no != NULL) lista = historico_concatenar(lista, br);
-    }    
+    // printf("historico_listar: debug\n");
+
+    // char *br = "\n";
+
+    // while (no != NULL)
+    // {
+    //     lista = historico_concatenar(lista, no_get_valor(no));
+    //     // printf(": %s", lista);
+
+    //     no = no_get_anterior(no);
+    //     if (no != NULL)
+    //         lista = historico_concatenar(lista, br);
+    // }
+
+    lista = historico_concatenar2(historico);
 
     return lista;
 }
