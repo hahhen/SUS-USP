@@ -11,22 +11,32 @@ struct Historico
 
 HISTORICO *historico_criar()
 {
-    HISTORICO *historico = (HISTORICO *)malloc(sizeof(HISTORICO));
+    HISTORICO *historico = (HISTORICO *)calloc(1, sizeof(HISTORICO));
 
-    if (historico == NULL)
-        return NULL;
-        
-    PILHA *h = pilha_criar();
+    historico->h = pilha_criar();
 
-    if (h == NULL)
-    {
-        free(historico);
-        return NULL;
-    }
+    char* a = "teste";
 
-    historico->h = h;
+    pilha_empilhar(historico->h, a);
+
+    
 
     return historico;
+
+    // if (historico == NULL)
+    //     return NULL;
+        
+    // PILHA *h = pilha_criar();
+
+    // if (h == NULL)
+    // {
+    //     free(historico);
+    //     return NULL;
+    // }
+
+    // historico->h = h;
+
+    // return historico;
 }
 
 // Limpa o histórico, apagando-o em seguida
@@ -34,18 +44,21 @@ void historico_apagar(HISTORICO **historico)
 {
     if (*historico != NULL)
     {
-        // Remove todos os elementos da pilha (liberando memória dos procedimentos)
-        while (pilha_topo((*historico)->h) != NULL)
-        {
-            char *procedimento = (char *)pilha_topo((*historico)->h);
-            pilha_desempilhar((*historico)->h);
-            free(procedimento); // Libera a string do procedimento
-        }
+        // // Remove todos os elementos da pilha (liberando memória dos procedimentos)
+        // while (pilha_topo((*historico)->h) != NULL)
+        // {
+        //     char *procedimento = (char *)pilha_topo((*historico)->h);
+        //     pilha_desempilhar((*historico)->h);
+        //     free(procedimento); // Libera a string do procedimento
+        // }
         
-        // Destrói a pilha
+        // // Destrói a pilha
+        // pilha_apagar(&((*historico)->h));
+        
+        // // Libera o histórico
+        // free(*historico);
+
         pilha_apagar(&((*historico)->h));
-        
-        // Libera o histórico
         free(*historico);
     }
 }

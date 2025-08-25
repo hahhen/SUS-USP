@@ -7,44 +7,29 @@
 int main()
 {
 
-    PILHA *p = pilha_criar();
+    // PILHA *p = pilha_criar();
     // HISTORICO *historico = historico_criar();
 
-    char *a = "fulano";
-    char *b = "ciclano";
+    char *a = "a";
+    char *b = "b";
 
-    int ia = 20;
-    int ib = 32;
+    int ia = 1;
+    int ib = 2;
+
+    // HISTORICO *h = historico_criar();
 
     PACIENTE* pa = paciente_criar(a, ia);
-    PACIENTE* pb = paciente_criar(b, ib);    
 
-    pilha_empilhar(p, a);
-    pilha_empilhar(p, b);
-    pilha_desempilhar(p);
+    // PACIENTE* pb = paciente_criar(b, ib);   
+    
+    // paciente_remover(&pb);
 
-    char* p1 = "teste1";
-    char* p2 = "teste2";
-    char* p3 = "teste3";
+    // historico_apagar(&h);
 
-    paciente_adicionar_procedimento(pa, p1);
-    paciente_adicionar_procedimento(pa, p2);
-    paciente_adicionar_procedimento(pa, p3);
-
-    paciente_remover_procedimento(pa);
-
-    printf("%s\n", p3);
-
-    printf("%s", paciente_listar_procedimentos(pa));
-    printf("%s", paciente_get_nome(pa));
-    printf("%d", paciente_get_id(pa));
+    // paciente_adicionar_procedimento(pa, a); causando leak
 
     paciente_remover(&pa);
-    paciente_remover(&pb);
 
-    pilha_apagar(&p);
-
-    // historico_inserir(historico, a);
     // historico_inserir(historico, b);
     // historico_inserir(historico, b);
 
