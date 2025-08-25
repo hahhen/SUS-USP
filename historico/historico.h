@@ -13,6 +13,8 @@ bool historico_inserir(HISTORICO* historico, char* procedimento);
 
 bool historico_remover(HISTORICO* historico);
 
+bool historico_vazio(HISTORICO *historico);
+
 char* historico_listar(HISTORICO* historico);
 
 #endif

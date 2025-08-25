@@ -18,7 +18,7 @@ PACIENTE *paciente_criar(char *nome, int id)
     if (paciente == NULL)
         return NULL;
 
-    paciente->nome = (char *)calloc(strlen(nome) + 1, sizeof(char));
+    paciente->nome = (char *)calloc(1, sizeof(strlen(nome) + 1));
 
     if (paciente->nome == NULL)
     {
@@ -33,7 +33,8 @@ PACIENTE *paciente_criar(char *nome, int id)
 
     // paciente->historico = historico_criar();
 
-    if(paciente->historico == NULL){
+    if (paciente->historico == NULL)
+    {
         free(paciente->nome);
         free(paciente);
         paciente = NULL;
@@ -94,7 +95,12 @@ void paciente_remover(PACIENTE **paciente)
     if (*paciente == NULL)
         return;
 
+    // while (!historico_vazio((*paciente)->historico))
+    // {
+    //     paciente_remover_procedimento(paciente);
+    // }
     historico_apagar(&((*paciente)->historico));
+
     free((*paciente)->nome);
     free(*paciente);
     *paciente = NULL;

@@ -15,17 +15,15 @@ HISTORICO *historico_criar()
 
     historico->h = pilha_criar();
 
-    char* a = "teste";
+    char *a = "teste";
 
     pilha_empilhar(historico->h, a);
-
-    
 
     return historico;
 
     // if (historico == NULL)
     //     return NULL;
-        
+
     // PILHA *h = pilha_criar();
 
     // if (h == NULL)
@@ -39,28 +37,35 @@ HISTORICO *historico_criar()
     // return historico;
 }
 
+
 // Limpa o histórico, apagando-o em seguida
 void historico_apagar(HISTORICO **historico)
 {
-    if (*historico != NULL)
+    // Remove todos os elementos da pilha (liberando memória dos procedimentos)
+    while (!historico_vazio(*historico))
     {
-        // // Remove todos os elementos da pilha (liberando memória dos procedimentos)
-        // while (pilha_topo((*historico)->h) != NULL)
-        // {
-        //     char *procedimento = (char *)pilha_topo((*historico)->h);
-        //     pilha_desempilhar((*historico)->h);
-        //     free(procedimento); // Libera a string do procedimento
-        // }
-        
-        // // Destrói a pilha
-        // pilha_apagar(&((*historico)->h));
-        
-        // // Libera o histórico
-        // free(*historico);
-
-        pilha_apagar(&((*historico)->h));
-        free(*historico);
+        char *procedimento = (char *)no_get_valor(pilha_topo((*historico)->h));
+        printf("proc(remover): %s\n", procedimento);
+        pilha_desempilhar((*historico)->h);
+        free(procedimento); // Libera a string do procedimento
     }
+
+    // Destrói a pilha
+    pilha_apagar(&((*historico)->h));
+
+    // Libera o histórico
+    free(*historico);
+
+    // pilha_apagar(&((*historico)->h));
+
+    // if (*historico != NULL)
+    // {
+    //     free(*historico);
+    // }
+}
+
+bool historico_vazio(HISTORICO *historico){
+    return pilha_vazia(historico->h);
 }
 
 bool historico_inserir(HISTORICO *historico, char *procedimento)
@@ -68,21 +73,25 @@ bool historico_inserir(HISTORICO *historico, char *procedimento)
     if (historico != NULL && procedimento != NULL)
     {
         // Cria uma cópia do procedimento para armazenar
-        char *copia = (char *)malloc(strlen(procedimento) + 1);
+        char *copia = (char *)calloc(1, sizeof(strlen(procedimento) + 1));
+
         if (copia == NULL)
             return false;
-            
+
         strcpy(copia, procedimento);
-        
+
+        printf("proc (inserir): %s\n", copia);
+
         // CRÍTICO: Verificar se a inserção na pilha foi bem-sucedida
         bool sucesso = pilha_empilhar(historico->h, copia);
-        
-        if (!sucesso) {
+
+        if (!sucesso)
+        {
             // Se falhou ao empilhar, libera a cópia criada para evitar leak
             free(copia);
             return false;
         }
-        
+
         return true;
     }
 
@@ -93,13 +102,10 @@ bool historico_remover(HISTORICO *historico)
 {
     if (historico != NULL)
     {
-        char *procedimento = (char *)pilha_topo(historico->h);
-        if (procedimento != NULL)
-        {
-            pilha_desempilhar(historico->h);
-            free(procedimento); // Libera a memória do procedimento removido
-            return true;
-        }
+        char *procedimento = (char *)no_get_valor(pilha_topo(historico->h));
+        pilha_desempilhar(historico->h);
+        free(procedimento);
+        return true;
     }
 
     return false;
@@ -110,7 +116,7 @@ char *historico_concatenar(char *destino, char *origem)
 {
     if (origem == NULL)
         return destino;
-        
+
     if (destino == NULL)
     {
         // Se destino é NULL, cria uma nova string
@@ -119,19 +125,19 @@ char *historico_concatenar(char *destino, char *origem)
             strcpy(nova, origem);
         return nova;
     }
-    
+
     // Realoca para comportar a concatenação
     size_t tamanho_atual = strlen(destino);
     size_t tamanho_origem = strlen(origem);
     size_t tamanho_total = tamanho_atual + tamanho_origem + 1;
-    
+
     char *novo_destino = (char *)realloc(destino, tamanho_total);
     if (novo_destino == NULL)
     {
         free(destino); // Em caso de falha, libera a memória original
         return NULL;
     }
-    
+
     strcat(novo_destino, origem);
     return novo_destino;
 }
@@ -150,16 +156,16 @@ char *historico_listar(HISTORICO *historico)
     while (no != NULL)
     {
         char *procedimento = (char *)no_get_valor(no);
-        
+
         // Concatena o procedimento
         lista = historico_concatenar(lista, procedimento);
         if (lista == NULL)
             return NULL;
-            
+
         printf("%s", lista);
 
         no = no_get_anterior(no);
-        
+
         // Adiciona quebra de linha se não for o último elemento
         if (no != NULL)
         {
@@ -177,11 +183,11 @@ size_t historico_calcular_tamanho_total(HISTORICO *historico)
 {
     if (historico == NULL)
         return 0;
-        
+
     size_t tamanho_total = 1; // Para o '\0'
     NO *no = pilha_topo(historico->h);
     int count = 0;
-    
+
     while (no != NULL)
     {
         char *procedimento = (char *)no_get_valor(no);
@@ -192,11 +198,11 @@ size_t historico_calcular_tamanho_total(HISTORICO *historico)
         }
         no = no_get_anterior(no);
     }
-    
+
     // Adiciona espaço para quebras de linha (count - 1)
     if (count > 1)
         tamanho_total += (count - 1);
-        
+
     return tamanho_total;
 }
 
@@ -225,7 +231,7 @@ char *historico_concatenar2(HISTORICO *historico)
         {
             if (!primeiro)
                 strcat(resultado, "\n");
-            
+
             strcat(resultado, procedimento);
             primeiro = false;
         }

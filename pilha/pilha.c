@@ -120,7 +120,13 @@ NO *pilha_topo(PILHA *p)
 
 void pilha_apagar(PILHA **p)
 {
-    if (*p == NULL || pilha_vazia(*p))
+    if(pilha_vazia(*p)){
+        free(*p);
+        *p = NULL;
+        return;
+    }
+
+    if (*p == NULL)
         return;
 
     NO *no_temp = pilha_topo(*p);

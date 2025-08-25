@@ -26,18 +26,9 @@ int main()
 
     // historico_apagar(&h);
 
-    // paciente_adicionar_procedimento(pa, a); causando leak
+    paciente_adicionar_procedimento(pa, a);
 
     paciente_remover(&pa);
-
-    // historico_inserir(historico, b);
-    // historico_inserir(historico, b);
-
-    // historico_remover(historico);
-
-    // printf("%s", no_get_valor(pilha_topo(p)));
-    // char *d = historico_listar(historico);
-    // printf("%s", d);
 
     return 0;
 }
