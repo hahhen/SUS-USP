@@ -7,28 +7,58 @@
 int main()
 {
 
-    // PILHA *p = pilha_criar();
+    PILHA *p = pilha_criar();
     // HISTORICO *historico = historico_criar();
 
-    char *a = "a";
-    char *b = "b";
+    char *a = "fulano";
+    char *b = "ciclano";
 
-    int ia = 1;
-    int ib = 2;
+    int *ia = (int *)malloc(sizeof(int));
+    int *ib = (int *)malloc(sizeof(int));
 
-    // HISTORICO *h = historico_criar();
+    *ia = 20;
+    *ib = 32;
 
-    PACIENTE* pa = paciente_criar(a, ia);
+    PACIENTE *pa = paciente_criar(a, ia);
+    PACIENTE *pb = paciente_criar(b, ib);
 
-    // PACIENTE* pb = paciente_criar(b, ib);   
-    
-    // paciente_remover(&pb);
+    pilha_empilhar(p, a);
+    pilha_empilhar(p, b);
+    pilha_desempilhar(p);
 
-    // historico_apagar(&h);
+    char *p1 = "teste1";
+    char *p2 = "teste2";
+    char *p3 = "teste3";
 
-    paciente_adicionar_procedimento(pa, a);
+    paciente_adicionar_procedimento(pa, p1);
+    paciente_adicionar_procedimento(pa, p2);
+    paciente_adicionar_procedimento(pa, p3);
 
-    paciente_remover(&pa);
+    // char *d = historico_listar(paciente_get_historico(pa));
+
+    // printf("%s", d);
+
+    // printf("-----------\n");
+
+    paciente_remover_procedimento(pa);
+
+    printf("%s\n", p3);
+
+    printf("%s", paciente_listar_procedimentos(pa));
+    printf("%s", paciente_get_nome(pa));
+    printf("%d", *paciente_get_id(pa));
+
+    // pilha_apagar(&p);
+
+    // historico_inserir(historico, a);
+    // historico_inserir(historico, b);
+    // historico_inserir(historico, b);
+
+    // historico_remover(historico);
+
+    // printf("%s", no_get_valor(pilha_topo(p)));
+    // char *d = historico_listar(historico);
+    // printf("%s", d);
 
     return 0;
 }

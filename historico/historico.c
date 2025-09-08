@@ -175,6 +175,8 @@ char *historico_listar(HISTORICO *historico)
         }
     }
 
+    printf("historico_listar: debug\n");
+
     return lista;
 }
 

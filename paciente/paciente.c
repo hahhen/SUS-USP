@@ -62,6 +62,14 @@ int paciente_get_id(PACIENTE *paciente)
     return paciente->id;
 }
 
+HISTORICO *paciente_get_historico(PACIENTE *paciente)
+{
+    if (paciente == NULL)
+        return NULL;
+
+    return paciente->historico;
+}
+
 bool paciente_adicionar_procedimento(PACIENTE *paciente, char *procedimento)
 {
     if (paciente == NULL || strlen(procedimento) == 0 || paciente->historico == NULL)
