@@ -8,8 +8,9 @@ NO_DIR = ./no
 PILHA_DIR = ./pilha
 HISTORICO_DIR = ./historico
 PACIENTE_DIR = ./paciente
+FILA_DIR = ./fila
 
-C_FILES = $(wildcard *.c) $(wildcard $(NO_DIR)/*.c) $(wildcard $(PILHA_DIR)/*.c) $(wildcard $(HISTORICO_DIR)/*.c) $(wildcard $(PACIENTE_DIR)/*.c)
+C_FILES = $(wildcard *.c) $(wildcard $(NO_DIR)/*.c) $(wildcard $(PILHA_DIR)/*.c) $(wildcard $(HISTORICO_DIR)/*.c) $(wildcard $(PACIENTE_DIR)/*.c) $(wildcard $(FILA_DIR)/*.c)
 OBJ_FILES = $(patsubst %.c, $(BUILD_DIR)/%.o, $(notdir $(C_FILES)))
 
 TARGET = main
@@ -32,6 +33,9 @@ $(BUILD_DIR)/%.o: $(PILHA_DIR)/%.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(FILA_DIR)/%.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(BUILD_DIR):

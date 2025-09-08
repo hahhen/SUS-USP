@@ -3,11 +3,13 @@
 #include "pilha/pilha.h"
 #include "historico/historico.h"
 #include "paciente/paciente.h"
+#include "fila/fila.h"
 
 int main()
 {
 
     PILHA *p = pilha_criar();
+    FILA *f = fila_criar();
     // HISTORICO *historico = historico_criar();
 
     char *a = "fulano";
@@ -19,34 +21,48 @@ int main()
     *ia = 20;
     *ib = 32;
 
-    PACIENTE *pa = paciente_criar(a, ia);
-    PACIENTE *pb = paciente_criar(b, ib);
+    fila_inserir(f, a);
+    fila_inserir(f, b);
 
-    pilha_empilhar(p, a);
-    pilha_empilhar(p, b);
-    pilha_desempilhar(p);
+    NO* na = fila_remover(f);
+    NO* nb = fila_remover(f);
 
-    char *p1 = "teste1";
-    char *p2 = "teste2";
-    char *p3 = "teste3";
+    fila_apagar(&f);
 
-    paciente_adicionar_procedimento(pa, p1);
-    paciente_adicionar_procedimento(pa, p2);
-    paciente_adicionar_procedimento(pa, p3);
+    printf("%d", f == NULL);
+    printf("\n");
 
-    // char *d = historico_listar(paciente_get_historico(pa));
+    printf("%s\n", (char*)no_get_valor(na));
+    printf("%s\n", (char*)no_get_valor(nb));
 
-    // printf("%s", d);
+    // PACIENTE *pa = paciente_criar(a, ia);
+    // PACIENTE *pb = paciente_criar(b, ib);
 
-    // printf("-----------\n");
+    // pilha_empilhar(p, a);
+    // pilha_empilhar(p, b);
+    // pilha_desempilhar(p);
 
-    paciente_remover_procedimento(pa);
+    // char *p1 = "teste1";
+    // char *p2 = "teste2";
+    // char *p3 = "teste3";
 
-    printf("%s\n", p3);
+    // paciente_adicionar_procedimento(pa, p1);
+    // paciente_adicionar_procedimento(pa, p2);
+    // paciente_adicionar_procedimento(pa, p3);
 
-    printf("%s", paciente_listar_procedimentos(pa));
-    printf("%s", paciente_get_nome(pa));
-    printf("%d", *paciente_get_id(pa));
+    // // char *d = historico_listar(paciente_get_historico(pa));
+
+    // // printf("%s", d);
+
+    // // printf("-----------\n");
+
+    // paciente_remover_procedimento(pa);
+
+    // printf("%s\n", p3);
+
+    // printf("%s", paciente_listar_procedimentos(pa));
+    // printf("%s", paciente_get_nome(pa));
+    // printf("%d", paciente_get_id(pa));
 
     // pilha_apagar(&p);
 
