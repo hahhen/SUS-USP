@@ -1,3 +1,4 @@
+
 #ifndef LISTA_H
 #define LISTA_H
 
@@ -17,3 +18,4 @@ bool lista_cheia(LISTA *lista);
 void lista_imprimir(LISTA *lista, void* (*imprimir_valor)(void*));
 
 #endif
+

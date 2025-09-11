@@ -4,6 +4,7 @@
 #include "historico/historico.h"
 #include "paciente/paciente.h"
 #include "fila/fila.h"
+#include "triagem/triagem.h"
 #include "lista/lista.h"
 
 int main(void){
