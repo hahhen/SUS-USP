@@ -1,5 +1,7 @@
 #include "../fila/fila.h"
 #include <stdlib.h>
+#include <stdbool.h>
+#include <stdio.h>
 #include "../paciente/paciente.h"
 #define TAM_MAX 10000
 

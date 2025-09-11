@@ -46,7 +46,6 @@ bool lista_inserir(LISTA *lista, void *valor)
 
     if (no_get_valor(atual) == NULL)
     {
-        printf("inseriu no head\n");
         no_set_anterior(no, NULL);
         lista->no_head = no;
         lista->tamanho++;
@@ -55,7 +54,6 @@ bool lista_inserir(LISTA *lista, void *valor)
 
     while (no_get_anterior(atual) != NULL)
     {
-        printf("andou\n");
         atual = no_get_anterior(atual);
     }
 
@@ -66,7 +64,7 @@ bool lista_inserir(LISTA *lista, void *valor)
     return true;
 }
 
-NO *lista_remover(LISTA *lista, void *chave, void *(*get_valor)(void *))
+void *lista_remover(LISTA *lista, void *chave, void *(*get_valor)(void *))
 {
     if (lista == NULL || lista->tamanho == 0)
     {
@@ -93,7 +91,7 @@ NO *lista_remover(LISTA *lista, void *chave, void *(*get_valor)(void *))
             }
 
             lista->tamanho--;
-            return atual;
+            return no_get_valor(atual);
         }
         anterior = atual;
         atual = no_get_anterior(atual);
@@ -172,7 +170,7 @@ bool lista_cheia(LISTA *lista)
     return false;
 }
 
-NO *lista_busca(LISTA *lista, void *chave, void *(*get_valor)(void *), bool(funcao_comparar)(void *, void *))
+void *lista_busca(LISTA *lista, void *chave, void *(*get_valor)(void *), bool(funcao_comparar)(void *, void *))
 {
     if (lista == NULL || lista->tamanho == 0)
     {
@@ -192,7 +190,7 @@ NO *lista_busca(LISTA *lista, void *chave, void *(*get_valor)(void *), bool(func
         if (comparacao == 0)
         {
             printf("Busca: encontrado\n");
-            return atual;
+            return no_get_valor(atual);
         }
         atual = no_get_anterior(atual);
     }

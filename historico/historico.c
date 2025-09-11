@@ -15,26 +15,20 @@ HISTORICO *historico_criar()
 
     historico->h = pilha_criar();
 
-    char *a = "teste";
+    if (historico == NULL)
+        return NULL;
 
-    pilha_empilhar(historico->h, a);
+    PILHA *h = pilha_criar();
+
+    if (h == NULL)
+    {
+        free(historico);
+        return NULL;
+    }
+
+    historico->h = h;
 
     return historico;
-
-    // if (historico == NULL)
-    //     return NULL;
-
-    // PILHA *h = pilha_criar();
-
-    // if (h == NULL)
-    // {
-    //     free(historico);
-    //     return NULL;
-    // }
-
-    // historico->h = h;
-
-    // return historico;
 }
 
 
@@ -80,7 +74,7 @@ bool historico_inserir(HISTORICO *historico, char *procedimento)
 
         strcpy(copia, procedimento);
 
-        printf("proc (inserir): %s\n", copia);
+        // printf("proc (inserir): %s\n", copia);
 
         // CRÍTICO: Verificar se a inserção na pilha foi bem-sucedida
         bool sucesso = pilha_empilhar(historico->h, copia);
@@ -151,7 +145,7 @@ char *historico_listar(HISTORICO *historico)
     char *lista = NULL;
     char *quebra_linha = "\n";
 
-    printf("historico_listar debug\n");
+    // printf("historico_listar debug\n");
 
     while (no != NULL)
     {
@@ -162,7 +156,7 @@ char *historico_listar(HISTORICO *historico)
         if (lista == NULL)
             return NULL;
 
-        printf("%s", lista);
+        // printf("%s", lista);
 
         no = no_get_anterior(no);
 
@@ -175,7 +169,9 @@ char *historico_listar(HISTORICO *historico)
         }
     }
 
-    printf("historico_listar: debug\n");
+    lista = historico_concatenar(lista, quebra_linha);
+
+    // printf("historico_listar: debug\n");
 
     return lista;
 }
@@ -224,7 +220,7 @@ char *historico_concatenar2(HISTORICO *historico)
     NO *no = pilha_topo(historico->h);
     bool primeiro = true;
 
-    printf("historico_concatenar2 debug\n");
+    // printf("historico_concatenar2 debug\n");
 
     while (no != NULL)
     {

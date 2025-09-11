@@ -90,7 +90,10 @@ bool paciente_remover_procedimento(PACIENTE *paciente)
 char *paciente_listar_procedimentos(PACIENTE *paciente)
 {
     if (paciente == NULL || paciente->historico == NULL)
+    {
+        printf("paciente_listar_procedimentos: paciente ou historico nulo\n");
         return NULL;
+    }
 
     // printf("paciente_listar_procedimentos: debug\n");
     char *res = historico_listar(paciente->historico);
@@ -114,8 +117,10 @@ void paciente_remover(PACIENTE **paciente)
     *paciente = NULL;
 }
 
-bool comparar_pacientes(void *p1, void *p2) {
-    if (p1 == NULL || p2 == NULL) return false;
+bool comparar_pacientes(void *p1, void *p2)
+{
+    if (p1 == NULL || p2 == NULL)
+        return false;
 
     PACIENTE *paciente1 = (PACIENTE *)p1;
     PACIENTE *paciente2 = (PACIENTE *)p2;
