@@ -66,7 +66,7 @@ int fila_tamanho(FILA *fila){
     return -1;
 }
 
-NO *fila_remover(FILA *fila){
+void *fila_remover(FILA *fila){
     NO *no;
     if ((fila != NULL) && (!fila_vazia(fila)))
     {
@@ -83,7 +83,7 @@ NO *fila_remover(FILA *fila){
 
         fila->tamanho--;
 
-        return no;
+        return no_valor;
     }
 
     return NULL;

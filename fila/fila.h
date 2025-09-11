@@ -12,7 +12,7 @@
   bool fila_vazia(FILA* fila);
   bool fila_cheia(FILA* fila);
   int fila_tamanho(FILA* fila);
-  NO* fila_remover(FILA* fila);
+  void* fila_remover(FILA* fila);
   bool fila_inserir(FILA* fila, void* valor);
 
 #endif 

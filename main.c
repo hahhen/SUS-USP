@@ -4,36 +4,52 @@
 #include "historico/historico.h"
 #include "paciente/paciente.h"
 #include "fila/fila.h"
+#include "triagem/triagem.h"
 
 int main()
 {
 
-    PILHA *p = pilha_criar();
-    FILA *f = fila_criar();
-    // HISTORICO *historico = historico_criar();
+    PACIENTE* paciente = paciente_criar("Arthur", 1);
+    PACIENTE* paciente2 = paciente_criar("Artahur", 2);
+    PACIENTE* paciente3 = paciente_criar("Arthaaur", 3);
 
-    char *a = "fulano";
-    char *b = "ciclano";
+    TRIAGEM* triagem = triagem_criar();
+    triagem_inserir(triagem, paciente);
+    triagem_inserir(triagem, paciente2);
+    triagem_inserir(triagem, paciente3);
 
-    int *ia = (int *)malloc(sizeof(int));
-    int *ib = (int *)malloc(sizeof(int));
+    printf("%s ", paciente_get_nome(triagem_remover(triagem)));
+    printf("%s ", paciente_get_nome(triagem_remover(triagem)));
+    printf("%s ", paciente_get_nome(triagem_remover(triagem)));
 
-    *ia = 20;
-    *ib = 32;
+    triagem_apagar(&triagem);
 
-    fila_inserir(f, a);
-    fila_inserir(f, b);
+    // PILHA *p = pilha_criar();
+    // FILA *f = fila_criar();
+    // // HISTORICO *historico = historico_criar();
 
-    NO* na = fila_remover(f);
-    NO* nb = fila_remover(f);
+    // char *a = "fulano";
+    // char *b = "ciclano";
 
-    fila_apagar(&f);
+    // int *ia = (int *)malloc(sizeof(int));
+    // int *ib = (int *)malloc(sizeof(int));
 
-    printf("%d", f == NULL);
-    printf("\n");
+    // *ia = 20;
+    // *ib = 32;
 
-    printf("%s\n", (char*)no_get_valor(na));
-    printf("%s\n", (char*)no_get_valor(nb));
+    // fila_inserir(f, a);
+    // fila_inserir(f, b);
+
+    // NO* na = fila_remover(f);
+    // NO* nb = fila_remover(f);
+
+    // fila_apagar(&f);
+
+    // printf("%d", f == NULL);
+    // printf("\n");
+
+    // printf("%s\n", (char*)no_get_valor(na));
+    // printf("%s\n", (char*)no_get_valor(nb));
 
     // PACIENTE *pa = paciente_criar(a, ia);
     // PACIENTE *pb = paciente_criar(b, ib);
