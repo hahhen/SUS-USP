@@ -4,12 +4,31 @@
 #include "historico/historico.h"
 #include "paciente/paciente.h"
 #include "fila/fila.h"
+#include "lista/lista.h"
 
 int main()
 {
 
     PILHA *p = pilha_criar();
     FILA *f = fila_criar();
+    LISTA *l = lista_criar();
+
+    char* teste = "teste";
+    char* teste2 = "teste2";
+    char* teste3 = "teste3";
+
+    PACIENTE* paciente = paciente_criar(teste, 20);
+    PACIENTE* paciente2 = paciente_criar(teste2, 32);
+
+    lista_inserir(l, paciente);
+    lista_inserir(l, paciente2);
+
+    lista_remover(l, 32, paciente_get_id);
+
+    lista_busca(l, teste2, paciente_get_nome, strcmp);
+
+    lista_imprimir(l, paciente_get_nome);
+
     // HISTORICO *historico = historico_criar();
 
     char *a = "fulano";
@@ -24,16 +43,16 @@ int main()
     fila_inserir(f, a);
     fila_inserir(f, b);
 
-    NO* na = fila_remover(f);
-    NO* nb = fila_remover(f);
+    NO *na = fila_remover(f);
+    NO *nb = fila_remover(f);
 
     fila_apagar(&f);
 
-    printf("%d", f == NULL);
-    printf("\n");
+    // printf("%d", f == NULL);
+    // printf("\n");
 
-    printf("%s\n", (char*)no_get_valor(na));
-    printf("%s\n", (char*)no_get_valor(nb));
+    // printf("%s\n", (char*)no_get_valor(na));
+    // printf("%s\n", (char*)no_get_valor(nb));
 
     // PACIENTE *pa = paciente_criar(a, ia);
     // PACIENTE *pb = paciente_criar(b, ib);

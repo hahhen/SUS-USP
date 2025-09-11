@@ -23,4 +23,6 @@ char *paciente_listar_procedimentos(PACIENTE *paciente);
 
 void paciente_remover(PACIENTE **paciente);
 
+bool comparar_pacientes(void *p1, void *p2);
+
 #endif

@@ -113,3 +113,12 @@ void paciente_remover(PACIENTE **paciente)
     free(*paciente);
     *paciente = NULL;
 }
+
+bool comparar_pacientes(void *p1, void *p2) {
+    if (p1 == NULL || p2 == NULL) return false;
+
+    PACIENTE *paciente1 = (PACIENTE *)p1;
+    PACIENTE *paciente2 = (PACIENTE *)p2;
+
+    return (paciente1->id == paciente2->id) && (strcmp(paciente1->nome, paciente2->nome) == 0);
+}
