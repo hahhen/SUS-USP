@@ -5,6 +5,7 @@
 #include "paciente/paciente.h"
 #include "fila/fila.h"
 #include "triagem/triagem.h"
+#include "lista/lista.h"
 
 int main()
 {
@@ -12,6 +13,28 @@ int main()
     PACIENTE* paciente = paciente_criar("Arthur", 1);
     PACIENTE* paciente2 = paciente_criar("Artahur", 2);
     PACIENTE* paciente3 = paciente_criar("Arthaaur", 3);
+    PILHA *p = pilha_criar();
+    FILA *f = fila_criar();
+    LISTA *l = lista_criar();
+
+    char* teste = "teste";
+    char* teste2 = "teste2";
+    char* teste3 = "teste3";
+
+    PACIENTE* paciente = paciente_criar(teste, 20);
+    PACIENTE* paciente2 = paciente_criar(teste2, 32);
+
+    lista_inserir(l, paciente);
+    lista_inserir(l, paciente2);
+
+    lista_remover(l, 32, paciente_get_id);
+
+    lista_busca(l, teste2, paciente_get_nome, strcmp);
+
+    lista_imprimir(l, paciente_get_nome);
+
+    // HISTORICO *historico = historico_criar();
+
 
     TRIAGEM* triagem = triagem_criar();
     triagem_inserir(triagem, paciente);
@@ -33,20 +56,6 @@ int main()
 
     // int *ia = (int *)malloc(sizeof(int));
     // int *ib = (int *)malloc(sizeof(int));
-
-    // *ia = 20;
-    // *ib = 32;
-
-    // fila_inserir(f, a);
-    // fila_inserir(f, b);
-
-    // NO* na = fila_remover(f);
-    // NO* nb = fila_remover(f);
-
-    // fila_apagar(&f);
-
-    // printf("%d", f == NULL);
-    // printf("\n");
 
     // printf("%s\n", (char*)no_get_valor(na));
     // printf("%s\n", (char*)no_get_valor(nb));

@@ -10,8 +10,10 @@ HISTORICO_DIR = ./historico
 PACIENTE_DIR = ./paciente
 FILA_DIR = ./fila
 TRIAGEM_DIR = ./triagem
+LISTA_DIR = ./lista
 
-C_FILES = $(wildcard *.c) $(wildcard $(NO_DIR)/*.c) $(wildcard $(PILHA_DIR)/*.c) $(wildcard $(HISTORICO_DIR)/*.c) $(wildcard $(PACIENTE_DIR)/*.c) $(wildcard $(FILA_DIR)/*.c) $(wildcard $(TRIAGEM_DIR)/*.c)
+C_FILES = $(wildcard *.c) $(wildcard $(NO_DIR)/*.c) $(wildcard $(PILHA_DIR)/*.c) $(wildcard $(HISTORICO_DIR)/*.c) $(wildcard $(PACIENTE_DIR)/*.c) $(wildcard $(FILA_DIR)/*.c) $(wildcard $(TRIAGEM_DIR)/*.c) $(wildcard $(LISTA_DIR)/*.c)
+
 OBJ_FILES = $(patsubst %.c, $(BUILD_DIR)/%.o, $(notdir $(C_FILES)))
 
 TARGET = main
@@ -38,8 +40,11 @@ $(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
 
 $(BUILD_DIR)/%.o: $(FILA_DIR)/%.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
+  
 $(BUILD_DIR)/%.o: $(TRIAGEM_DIR)/%.c | $(BUILD_DIR)
+  $(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(LISTA_DIR)/%.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(BUILD_DIR):

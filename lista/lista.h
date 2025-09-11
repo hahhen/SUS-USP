@@ -1,18 +1,21 @@
-#ifndef _LISTA_H
-#define _LISTA_H
 
-    #include "../no/no.h"
-    #include <stdbool.h>
+#ifndef LISTA_H
+#define LISTA_H
 
-    typedef struct lista LISTA;
+#include "../no/no.h"
+#include <stdbool.h>
 
-    LISTA *lista_criar(void);
-    bool lista_apagar(LISTA **lista);
-    bool lista_inserir(LISTA *lista, void *valor);
-    NO* lista_remover(LISTA *lista, void *valor);
-    NO* lista_buscar(LISTA *lista, void *valor);
-    bool lista_vazia(LISTA *lista);
-    bool lista_cheia(LISTA *lista);
-    int lista_tamanho(LISTA *lista);
+typedef struct lista_ LISTA;
+
+LISTA *lista_criar();
+bool lista_inserir(LISTA *lista, void *valor);
+NO *lista_remover(LISTA *lista, void *chave, void *(*get_valor)(void *));
+bool lista_apagar(LISTA **lista);
+NO *lista_busca(LISTA *lista, void *chave, void *(*get_valor)(void *), bool(funcao_comparar)(void *, void *));
+int lista_tamanho(LISTA *lista);
+bool lista_vazia(LISTA *lista);
+bool lista_cheia(LISTA *lista);
+void lista_imprimir(LISTA *lista, void* (*imprimir_valor)(void*));
 
 #endif
+
