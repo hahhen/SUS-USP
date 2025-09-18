@@ -35,29 +35,30 @@ bool lista_pacientes_inserir(LISTA_PACIENTES *lista, PACIENTE* paciente)
     return false;
 }
 
-bool lista_pacientes_remover(LISTA_PACIENTES *lista, int chave, int (*get_valor)(void *))
+bool lista_pacientes_remover(LISTA_PACIENTES *lista, int chave)
 {
     if (lista != NULL && lista->l != NULL)
     {
-        return lista_remover(lista->l, chave, get_valor);
+        return lista_remover(lista->l, chave, paciente_get_id);
     }
     return false;
 }
 
-void *lista_pacientes_busca(LISTA_PACIENTES *lista, void *chave, void *(*get_valor)(void *), bool(funcao_comparar)(void *, void *))
+void *lista_pacientes_busca(LISTA_PACIENTES *lista, void *chave)
 {
     if (lista != NULL && lista->l != NULL)
     {
-        return lista_busca(lista->l, chave, get_valor, funcao_comparar);
+        return lista_busca(lista->l, chave, paciente_get_nome, strcmp);
     }
     return NULL;
 }
 
-void lista_pacientes_imprimir(LISTA_PACIENTES *lista, void *(*imprimir_valor)(void *))
+void lista_pacientes_imprimir(LISTA_PACIENTES *lista)
 {
     if (lista != NULL && lista->l != NULL)
     {
-        lista_imprimir(lista->l, imprimir_valor);
+        printf("Lista de Pacientes:\n");
+        lista_imprimir(lista->l, paciente_get_nome);
     }
 }
 

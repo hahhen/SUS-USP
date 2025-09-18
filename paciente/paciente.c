@@ -98,7 +98,11 @@ char *paciente_listar_procedimentos(PACIENTE *paciente)
     // printf("paciente_listar_procedimentos: debug\n");
     char *res = historico_listar(paciente->historico);
 
-    return res;
+    printf("Procedimentos do paciente %s (ID: %d):\n", paciente->nome, paciente->id);
+
+    printf("%s\n", res);
+
+    // return res;
 }
 
 void paciente_remover(PACIENTE **paciente)

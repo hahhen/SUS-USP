@@ -151,6 +151,8 @@ char *historico_listar(HISTORICO *historico)
     {
         char *procedimento = (char *)no_get_valor(no);
 
+        // printf("proc(listar): %s\n", procedimento);
+
         // Concatena o procedimento
         lista = historico_concatenar(lista, procedimento);
         if (lista == NULL)
@@ -170,6 +172,8 @@ char *historico_listar(HISTORICO *historico)
     }
 
     lista = historico_concatenar(lista, quebra_linha);
+
+    // printf("%s", lista);
 
     // printf("historico_listar: debug\n");
 
