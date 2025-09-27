@@ -18,7 +18,7 @@ PACIENTE *paciente_criar(char *nome, int id)
     if (paciente == NULL)
         return NULL;
 
-    paciente->nome = (char *)calloc(1, sizeof(strlen(nome) + 1));
+    paciente->nome = (char *)malloc(strlen(nome) + 1);
 
     if (paciente->nome == NULL)
     {
@@ -31,8 +31,6 @@ PACIENTE *paciente_criar(char *nome, int id)
 
     paciente->historico = historico_criar();
 
-    // paciente->historico = historico_criar();
-
     if (paciente->historico == NULL)
     {
         free(paciente->nome);
@@ -42,6 +40,8 @@ PACIENTE *paciente_criar(char *nome, int id)
     }
 
     paciente->id = id;
+
+    printf("Criando paciente: %s (ID: %d)\n", paciente->nome, paciente->id);
 
     return paciente;
 }

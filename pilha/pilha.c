@@ -12,6 +12,7 @@ struct pilha
 PILHA *pilha_criar()
 {
 
+    printf("Criando pilha\n");
     PILHA *p = (PILHA *)malloc(sizeof(PILHA));
 
     if (p != NULL)

@@ -11,22 +11,22 @@ struct Historico
 
 HISTORICO *historico_criar()
 {
-    HISTORICO *historico = (HISTORICO *)calloc(1, sizeof(HISTORICO));
 
-    historico->h = pilha_criar();
+    HISTORICO *historico = (HISTORICO *)malloc(sizeof(HISTORICO));
 
     if (historico == NULL)
-        return NULL;
-
-    PILHA *h = pilha_criar();
-
-    if (h == NULL)
     {
-        free(historico);
         return NULL;
     }
 
-    historico->h = h;
+    historico->h = pilha_criar();
+    if (historico->h == NULL)
+    {
+        free(historico); 
+        return NULL;
+    }
+
+    printf("Criando historico\n");
 
     return historico;
 }
@@ -67,7 +67,7 @@ bool historico_inserir(HISTORICO *historico, char *procedimento)
     if (historico != NULL && procedimento != NULL)
     {
         // Cria uma cópia do procedimento para armazenar
-        char *copia = (char *)calloc(1, sizeof(strlen(procedimento) + 1));
+        char *copia = (char *)malloc(strlen(procedimento) + 1);
 
         if (copia == NULL)
             return false;
