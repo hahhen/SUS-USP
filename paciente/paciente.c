@@ -87,22 +87,29 @@ bool paciente_remover_procedimento(PACIENTE *paciente)
     return historico_remover(paciente->historico);
 }
 
-char *paciente_listar_procedimentos(PACIENTE *paciente)
+void paciente_listar_procedimentos(PACIENTE *paciente)
 {
     if (paciente == NULL || paciente->historico == NULL)
     {
-        printf("paciente_listar_procedimentos: paciente ou historico nulo\n");
-        return NULL;
+        printf("Erro: Impossível listar procedimentos. Paciente ou histórico nulo.\n");
+        return;
     }
-
-    // printf("paciente_listar_procedimentos: debug\n");
-    char *res = historico_listar(paciente->historico);
 
     printf("Procedimentos do paciente %s (ID: %d):\n", paciente->nome, paciente->id);
 
-    printf("%s\n", res);
+    char *lista_procedimentos = historico_listar(paciente->historico);
 
-    // return res;
+    if (lista_procedimentos == NULL)
+    {
+        printf(" -> Nenhum procedimento registrado ou falha na alocação de memória.\n\n");
+    }
+    else
+    {
+        printf("%s\n", lista_procedimentos);
+
+        free(lista_procedimentos);
+        lista_procedimentos = NULL;
+    }
 }
 
 void paciente_remover(PACIENTE **paciente)
