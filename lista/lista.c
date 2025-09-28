@@ -36,35 +36,31 @@ bool lista_inserir(LISTA *lista, void *valor)
         return false;
     }
 
-    NO *no = no_criar(valor, NULL);
-    if (no == NULL)
+    NO *novo_no = no_criar(valor, NULL);
+    if (novo_no == NULL)
     {
         return false;
     }
 
-    NO *atual = lista->no_head;
-
-    if (no_get_valor(atual) == NULL)
+    if (lista->no_head == NULL)
     {
-        no_set_anterior(no, NULL);
-        lista->no_head = no;
-        lista->tamanho++;
-        return true;
+        lista->no_head = novo_no;
     }
-
-    while (no_get_anterior(atual) != NULL)
+    else
     {
-        atual = no_get_anterior(atual);
+        NO *atual = lista->no_head;
+        while (no_get_anterior(atual) != NULL)
+        {
+            atual = no_get_anterior(atual);
+        }
+        no_set_anterior(atual, novo_no);
     }
-
-    no_set_anterior(atual, no);
-    no_set_anterior(no, NULL);
 
     lista->tamanho++;
     return true;
 }
 
-void *lista_remover(LISTA *lista, void *chave, void *(*get_valor)(void *))
+void *lista_remover(LISTA *lista, void *chave, void *(*get_valor)(void *), void (*remover)(void *))
 {
     if (lista == NULL || lista->tamanho == 0)
     {
@@ -90,8 +86,12 @@ void *lista_remover(LISTA *lista, void *chave, void *(*get_valor)(void *))
                 no_set_anterior(anterior, no_get_anterior(atual));
             }
 
+            char* valor = no_get_valor(atual);
+
+            remover(no_get_valor(atual));
+            no_remover_ponteiro(atual);
             lista->tamanho--;
-            return no_get_valor(atual);
+            return valor;
         }
         anterior = atual;
         atual = no_get_anterior(atual);
@@ -100,7 +100,7 @@ void *lista_remover(LISTA *lista, void *chave, void *(*get_valor)(void *))
     return NULL;
 }
 
-bool lista_apagar(LISTA **lista)
+bool lista_apagar(LISTA **lista, void (*remover)(void **))
 {
     if (lista == NULL || *lista == NULL)
     {
@@ -113,7 +113,8 @@ bool lista_apagar(LISTA **lista)
     while (atual != NULL)
     {
         proximo = no_get_anterior(atual);
-        free(atual);
+        remover(no_get_valor(atual));
+        no_remover_ponteiro(atual);
         atual = proximo;
     }
 

@@ -21,6 +21,8 @@ bool paciente_remover_procedimento(PACIENTE *paciente);
 
 void paciente_listar_procedimentos(PACIENTE *paciente);
 
+void paciente_remover_ponteiro(PACIENTE* paciente);
+
 void paciente_remover(PACIENTE **paciente);
 
 bool comparar_pacientes(void *p1, void *p2);

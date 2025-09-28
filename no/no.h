@@ -15,4 +15,6 @@ void no_set_valor(NO* no, void* valor);
 
 void no_remover(NO **no);
 
+void no_remover_ponteiro(NO *no);
+
 #endif

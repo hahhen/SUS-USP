@@ -128,6 +128,16 @@ void paciente_remover(PACIENTE **paciente)
     *paciente = NULL;
 }
 
+void paciente_remover_ponteiro(PACIENTE* paciente){
+    if (paciente == NULL)
+        return;
+
+    historico_apagar(&(paciente->historico));
+
+    free(paciente->nome);
+    free(paciente);
+}
+
 bool comparar_pacientes(void *p1, void *p2)
 {
     if (p1 == NULL || p2 == NULL)
