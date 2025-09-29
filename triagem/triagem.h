@@ -14,6 +14,7 @@
     bool triagem_vazia(TRIAGEM *triagem);
     bool triagem_cheia(TRIAGEM *triagem);
     int triagem_tamanho(TRIAGEM *triagem);
+    void triagem_imprimir(TRIAGEM *triagem);
     void triagem_apagar(TRIAGEM **triagem);
 
 #endif
