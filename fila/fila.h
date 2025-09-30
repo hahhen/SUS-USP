@@ -14,5 +14,6 @@
   int fila_tamanho(FILA* fila);
   void* fila_remover(FILA* fila);
   bool fila_inserir(FILA* fila, void* valor);
+  NO* fila_get_inicio(FILA *fila);
 
 #endif 

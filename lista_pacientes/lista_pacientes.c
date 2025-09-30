@@ -35,6 +35,22 @@ bool lista_pacientes_inserir(LISTA_PACIENTES *lista, PACIENTE* paciente)
     return false;
 }
 
+bool lista_pacientes_adicionar_procedimento(LISTA_PACIENTES *lista, int id, char* procedimento){
+    PACIENTE* p = lista_pacientes_busca(lista, id);
+
+    if(p == NULL) return false;
+
+    return paciente_adicionar_procedimento(p, procedimento);
+}
+
+bool lista_pacientes_remover_procedimento(LISTA_PACIENTES *lista, int id){
+    PACIENTE* p = lista_pacientes_busca(lista, id);
+
+    if(p == NULL) return false;
+
+    return paciente_remover_procedimento(p);
+}
+
 bool lista_pacientes_remover(LISTA_PACIENTES *lista, int chave)
 {
     if (lista != NULL && lista->l != NULL)
@@ -84,4 +100,11 @@ bool lista_pacientes_apagar(LISTA_PACIENTES **lista)
         return true;
     }
     return false;
+}
+
+NO* lista_pacientes_get_no_head(LISTA_PACIENTES* lista){
+    if(lista != NULL && lista->l != NULL){
+        return lista_get_no_head(lista->l);
+    }
+    return NULL;
 }

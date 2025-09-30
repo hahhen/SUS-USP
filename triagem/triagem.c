@@ -73,3 +73,31 @@ bool triagem_inserir(TRIAGEM *triagem, PACIENTE *paciente)
 		return fila_inserir(triagem->fila, paciente);
 	return false;
 }
+
+void triagem_imprimir(TRIAGEM *triagem)
+{
+	if (triagem == NULL)
+		return NULL;
+
+	NO* no = fila_get_inicio(triagem->fila);
+
+	while (no != NULL)
+	{
+		PACIENTE* paciente = (PACIENTE *)no_get_valor(no);
+		printf("ID: %d | NOME: %s", paciente_get_id(paciente), paciente_get_nome(paciente));
+		no = no_get_anterior(no);
+		// Adiciona quebra de linha se não for o último elemento
+		if (no != NULL)
+		{
+			printf("\n");
+		}
+	}
+
+}
+
+NO* triagem_get_no_inicio(TRIAGEM *triagem)
+{
+	if (triagem != NULL)
+		return fila_get_inicio(triagem->fila);
+	return NULL;
+}

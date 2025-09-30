@@ -171,6 +171,13 @@ bool lista_cheia(LISTA *lista)
     return false;
 }
 
+NO* lista_get_no_head(LISTA* lista){
+    if(lista != NULL){
+        return lista->no_head;
+    }
+    return NULL;
+}
+
 void *lista_busca(LISTA *lista, void *chave, void *(*get_valor)(void *), bool(funcao_comparar)(void *, void *))
 {
     if (lista == NULL || lista->tamanho == 0)
