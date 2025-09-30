@@ -39,7 +39,7 @@ bool lista_pacientes_remover(LISTA_PACIENTES *lista, int chave)
 {
     if (lista != NULL && lista->l != NULL)
     {
-        return lista_remover(lista->l, chave, paciente_get_id);
+        return lista_remover(lista->l, chave, paciente_get_id, paciente_remover_ponteiro);
     }
     return false;
 }
@@ -77,7 +77,7 @@ bool lista_pacientes_apagar(LISTA_PACIENTES **lista)
     {
         if ((*lista)->l != NULL)
         {
-            lista_apagar(&((*lista)->l));
+            lista_apagar(&((*lista)->l), paciente_remover_ponteiro);
         }
         free(*lista);
         *lista = NULL;

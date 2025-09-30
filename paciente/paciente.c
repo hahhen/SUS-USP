@@ -18,7 +18,7 @@ PACIENTE *paciente_criar(char *nome, int id)
     if (paciente == NULL)
         return NULL;
 
-    paciente->nome = (char *)calloc(1, sizeof(strlen(nome) + 1));
+    paciente->nome = (char *)malloc(strlen(nome) + 1);
 
     if (paciente->nome == NULL)
     {
@@ -31,8 +31,6 @@ PACIENTE *paciente_criar(char *nome, int id)
 
     paciente->historico = historico_criar();
 
-    // paciente->historico = historico_criar();
-
     if (paciente->historico == NULL)
     {
         free(paciente->nome);
@@ -42,6 +40,8 @@ PACIENTE *paciente_criar(char *nome, int id)
     }
 
     paciente->id = id;
+
+    printf("Criando paciente: %s (ID: %d)\n", paciente->nome, paciente->id);
 
     return paciente;
 }
@@ -87,22 +87,29 @@ bool paciente_remover_procedimento(PACIENTE *paciente)
     return historico_remover(paciente->historico);
 }
 
-char *paciente_listar_procedimentos(PACIENTE *paciente)
+void paciente_listar_procedimentos(PACIENTE *paciente)
 {
     if (paciente == NULL || paciente->historico == NULL)
     {
-        printf("paciente_listar_procedimentos: paciente ou historico nulo\n");
-        return NULL;
+        printf("Erro: Impossível listar procedimentos. Paciente ou histórico nulo.\n");
+        return;
     }
-
-    // printf("paciente_listar_procedimentos: debug\n");
-    char *res = historico_listar(paciente->historico);
 
     printf("Procedimentos do paciente %s (ID: %d):\n", paciente->nome, paciente->id);
 
-    printf("%s\n", res);
+    char *lista_procedimentos = historico_listar(paciente->historico);
 
-    // return res;
+    if (lista_procedimentos == NULL)
+    {
+        printf(" -> Nenhum procedimento registrado ou falha na alocação de memória.\n\n");
+    }
+    else
+    {
+        printf("%s\n", lista_procedimentos);
+
+        free(lista_procedimentos);
+        lista_procedimentos = NULL;
+    }
 }
 
 void paciente_remover(PACIENTE **paciente)
@@ -119,6 +126,16 @@ void paciente_remover(PACIENTE **paciente)
     free((*paciente)->nome);
     free(*paciente);
     *paciente = NULL;
+}
+
+void paciente_remover_ponteiro(PACIENTE* paciente){
+    if (paciente == NULL)
+        return;
+
+    historico_apagar(&(paciente->historico));
+
+    free(paciente->nome);
+    free(paciente);
 }
 
 bool comparar_pacientes(void *p1, void *p2)

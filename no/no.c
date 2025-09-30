@@ -31,8 +31,18 @@ void no_set_anterior(NO* no, NO* anterior){
 
 void no_remover(NO **no) {
     if (*no != NULL) {
+        (*no)->valor = NULL;
+        (*no)->anterior = NULL;
         free(*no);
         *no = NULL;
+    }
+}
+
+void no_remover_ponteiro(NO *no) {
+    if (no != NULL) {
+        no->valor = NULL;
+        no->anterior = NULL;
+        free(no);
     }
 }
 

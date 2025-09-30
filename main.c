@@ -11,7 +11,7 @@
 int main(void){
     LISTA_PACIENTES* lista_pac = lista_pacientes_criar();
     TRIAGEM* triagem = lista_pacientes_criar();
-
+  
     while(1){
         printf("1. Registrar paciente\n");
         printf("2. Registrar óbito de paciente\n");
@@ -99,4 +99,6 @@ int main(void){
     }
     //finalizar o programa
 
+
+    return 0;
 }

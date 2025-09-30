@@ -1,4 +1,5 @@
 build
-main.exe
+main
 c_cpp_properties.json
 settings.json
+vgcore*

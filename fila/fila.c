@@ -78,8 +78,9 @@ void *fila_remover(FILA *fila){
         fila->inicio = no_get_anterior(no);
 
         if (fila->inicio == NULL) {
-            fila->fim = NULL; // Se a fila ficar vazia, atualiza o fim também
+            fila->fim = NULL;
         }
+        no_remover(&no);
 
         fila->tamanho--;
 

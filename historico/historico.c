@@ -11,22 +11,22 @@ struct Historico
 
 HISTORICO *historico_criar()
 {
-    HISTORICO *historico = (HISTORICO *)calloc(1, sizeof(HISTORICO));
 
-    historico->h = pilha_criar();
+    HISTORICO *historico = (HISTORICO *)malloc(sizeof(HISTORICO));
 
     if (historico == NULL)
-        return NULL;
-
-    PILHA *h = pilha_criar();
-
-    if (h == NULL)
     {
-        free(historico);
         return NULL;
     }
 
-    historico->h = h;
+    historico->h = pilha_criar();
+    if (historico->h == NULL)
+    {
+        free(historico); 
+        return NULL;
+    }
+
+    printf("Criando historico\n");
 
     return historico;
 }
@@ -35,13 +35,11 @@ HISTORICO *historico_criar()
 // Limpa o histórico, apagando-o em seguida
 void historico_apagar(HISTORICO **historico)
 {
-    // Remove todos os elementos da pilha (liberando memória dos procedimentos)
     while (!historico_vazio(*historico))
     {
         char *procedimento = (char *)no_get_valor(pilha_topo((*historico)->h));
-        printf("proc(remover): %s\n", procedimento);
         pilha_desempilhar((*historico)->h);
-        free(procedimento); // Libera a string do procedimento
+        free(procedimento);
     }
 
     // Destrói a pilha
@@ -50,12 +48,6 @@ void historico_apagar(HISTORICO **historico)
     // Libera o histórico
     free(*historico);
 
-    // pilha_apagar(&((*historico)->h));
-
-    // if (*historico != NULL)
-    // {
-    //     free(*historico);
-    // }
 }
 
 bool historico_vazio(HISTORICO *historico){
@@ -67,21 +59,17 @@ bool historico_inserir(HISTORICO *historico, char *procedimento)
     if (historico != NULL && procedimento != NULL)
     {
         // Cria uma cópia do procedimento para armazenar
-        char *copia = (char *)calloc(1, sizeof(strlen(procedimento) + 1));
+        char *copia = (char *)malloc(strlen(procedimento) + 1);
 
         if (copia == NULL)
             return false;
 
         strcpy(copia, procedimento);
 
-        // printf("proc (inserir): %s\n", copia);
-
-        // CRÍTICO: Verificar se a inserção na pilha foi bem-sucedida
         bool sucesso = pilha_empilhar(historico->h, copia);
 
         if (!sucesso)
         {
-            // Se falhou ao empilhar, libera a cópia criada para evitar leak
             free(copia);
             return false;
         }

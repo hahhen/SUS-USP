@@ -19,7 +19,9 @@ bool paciente_adicionar_procedimento(PACIENTE *paciente, char *procedimento);
 
 bool paciente_remover_procedimento(PACIENTE *paciente);
 
-char *paciente_listar_procedimentos(PACIENTE *paciente);
+void paciente_listar_procedimentos(PACIENTE *paciente);
+
+void paciente_remover_ponteiro(PACIENTE* paciente);
 
 void paciente_remover(PACIENTE **paciente);
 

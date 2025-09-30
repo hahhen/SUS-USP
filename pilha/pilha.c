@@ -12,6 +12,7 @@ struct pilha
 PILHA *pilha_criar()
 {
 
+    printf("Criando pilha\n");
     PILHA *p = (PILHA *)malloc(sizeof(PILHA));
 
     if (p != NULL)
@@ -65,25 +66,24 @@ int pilha_tamanho(PILHA *p)
 
 bool pilha_empilhar(PILHA *p, void *valor)
 {
-
-    NO *no = no_criar(valor, NULL);
-
-    if (no == NULL)
-        return false;
-
-    if ((p != NULL) && (!pilha_cheia(p)))
+    if (p == NULL)
     {
-
-        no_set_anterior(no, p->topo);
-
-        p->topo = no;
-
-        p->tamanho++;
-
-        return true;
+        return false;
     }
 
-    return false;
+    NO *novo_no = no_criar(valor, NULL);
+
+    if (novo_no == NULL)
+    {
+        return false;
+    }
+
+    no_set_anterior(novo_no, p->topo);
+
+    p->topo = novo_no;
+    p->tamanho++;
+
+    return true;
 }
 
 void *pilha_desempilhar(PILHA *p)
