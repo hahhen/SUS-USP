@@ -48,47 +48,40 @@ int main(void){
                 printf("Paciente não encontrado.\n");
             }
         }else if(n == 3){
-            int id,item;
-            scanf(" %d %d",&id,&item);
-            PACIENTE* paciente = lista_pacientes_busca(lista_pac, id);
-            //TENTAR SIMPLIFICAR ISSO AQUI DEPOIS (pra n ficar dando find e depois adicionar)
-            if(paciente != NULL){
-                bool foi = paciente_adicionar_procedimento(paciente,item);
-                if(!foi){
-                    printf("Inserção não sucedida\n");
-                }
-            }else{
-                printf("Paciente não encontrado.\n");
+            int id;
+            char item[100];
+            scanf(" %d %s",&id, item);
+            if(!lista_pacientes_adicionar_procedimento(lista_pac,id,item)){
+                printf("Inserção não sucedida.\n");
             }
         }else if(n == 4){
             int id;
             scanf(" %d",&id);
-            PACIENTE* paciente = lista_pacientes_busca(lista_pac, id);
-            if(paciente != NULL){
-                bool foi = paciente_remover_procedimento(paciente);
-                if(!foi){
-                    printf("Procedimento está vazio\n");
-                }
-            }else{
-                printf("Paciente não encontrado.\n");
+            if(!lista_pacientes_remover_procedimento(lista_pac,id)){
+                printf("Remoção não sucedida.\n");
             }
         }else if(n == 5){
-            bool foi = triagem_remover(triagem);
-            if(!foi){
-                printf("Procedimento já estava vazio\n");
+            if(triagem_vazia(triagem)){
+                printf("Fila de espera vazia.");
+            }
+            else{
+                PACIENTE* paciente = triagem_remover(triagem);
+                if(paciente != NULL){
+                    printf("Paciente não está na fila de espera.\n");
+                }
             }
         }else if(n == 6){
-            //printar a a lista de espera inteira (NAO EXISTE ESSA FUNCAO)
-            //triagem_imprimir()
+            triagem_imprimir(triagem);
         }else if(n == 7){
             int id;
             scanf("%d",&id);
-            //printar historico do paciente id ESSE AQUI SÓ N SEI MESMO
             PACIENTE* paciente = lista_pacientes_busca(lista_pac, id);
             if(paciente != NULL){
-                bool foi = paciente_imp(paciente);
-                if(!foi){
+                bool vazia = historico_vazio(paciente_get_historico(paciente));
+                if(vazia){
                     printf("Procedimento está vazio\n");
+                }else{
+                    historico_listar(paciente_get_historico(paciente));
                 }
             }else{
                 printf("Paciente não encontrado.\n");

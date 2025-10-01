@@ -47,6 +47,7 @@ bool SAVE(LISTA_PACIENTES *lista, TRIAGEM *triagem) {
     }
     fclose(fp_triagem);
 
+
     return true;
 }
 
@@ -178,4 +179,5 @@ static PACIENTE* carregar_paciente(FILE *fp) {
     }
 
     return novo_paciente;
+
 }

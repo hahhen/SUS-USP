@@ -17,6 +17,8 @@ bool lista_pacientes_busca_id_e_adiciona_procedimento(LISTA_PACIENTES *lista, in
 int lista_pacientes_tamanho(LISTA_PACIENTES *lista);
 NO *lista_pacientes_get_inicio(LISTA_PACIENTES *lista);
 bool lista_pacientes_apagar(LISTA_PACIENTES **lista);
+bool lista_pacientes_remover_procedimento(LISTA_PACIENTES *lista, int id);
+NO* lista_pacientes_get_no_head(LISTA_PACIENTES* lista);
 
 #endif
 

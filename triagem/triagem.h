@@ -17,5 +17,6 @@
     void triagem_imprimir(TRIAGEM *triagem);
     void triagem_apagar(TRIAGEM **triagem);
     NO* triagem_get_inicio(TRIAGEM *triagem);
+    NO* triagem_get_no_inicio(TRIAGEM *triagem);
 
 #endif

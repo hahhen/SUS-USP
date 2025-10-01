@@ -17,6 +17,7 @@ bool lista_vazia(LISTA *lista);
 bool lista_cheia(LISTA *lista);
 void lista_imprimir(LISTA *lista, void* (*imprimir_valor)(void*));
 NO* lista_get_no_head(LISTA *lista);
+NO* lista_get_no_head(LISTA* lista);
 
 #endif
 
