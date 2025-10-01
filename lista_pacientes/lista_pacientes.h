@@ -13,8 +13,10 @@ bool lista_pacientes_inserir(LISTA_PACIENTES *lista, PACIENTE* paciente);
 bool lista_pacientes_remover(LISTA_PACIENTES *lista, int chave);
 void *lista_pacientes_busca(LISTA_PACIENTES *lista, void *chave);
 void lista_pacientes_imprimir(LISTA_PACIENTES *lista);
+bool lista_pacientes_busca_id_e_adiciona_procedimento(LISTA_PACIENTES *lista, int id, char* procedimento);
 int lista_pacientes_tamanho(LISTA_PACIENTES *lista);
-bool lista_pacientes_adicionar_procedimento(LISTA_PACIENTES *lista, int id, char* procedimento);
+NO *lista_pacientes_get_inicio(LISTA_PACIENTES *lista);
+bool lista_pacientes_apagar(LISTA_PACIENTES **lista);
 bool lista_pacientes_remover_procedimento(LISTA_PACIENTES *lista, int id);
 NO* lista_pacientes_get_no_head(LISTA_PACIENTES* lista);
 

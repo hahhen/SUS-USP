@@ -15,6 +15,7 @@ LISTA_PACIENTES_DIR = ./lista_pacientes
 IO_DIR = ./io
 
 C_FILES = $(wildcard *.c) $(wildcard $(NO_DIR)/*.c) $(wildcard $(PILHA_DIR)/*.c) $(wildcard $(HISTORICO_DIR)/*.c) $(wildcard $(PACIENTE_DIR)/*.c) $(wildcard $(FILA_DIR)/*.c) $(wildcard $(TRIAGEM_DIR)/*.c) $(wildcard $(LISTA_DIR)/*.c) $(wildcard $(LISTA_PACIENTES_DIR)/*.c)  $(wildcard $(IO_DIR)/*.c)
+
 OBJ_FILES = $(patsubst %.c, $(BUILD_DIR)/%.o, $(notdir $(C_FILES)))
 
 TARGET = main
@@ -49,6 +50,9 @@ $(BUILD_DIR)/%.o: $(TRIAGEM_DIR)/%.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(BUILD_DIR)/%.o: $(LISTA_PACIENTES_DIR)/%.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(IO_DIR)/%.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(BUILD_DIR):

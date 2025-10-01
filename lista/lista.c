@@ -29,6 +29,15 @@ LISTA *lista_criar()
     return lista;
 }
 
+NO* lista_get_no_head(LISTA *lista)
+{
+    if (lista == NULL)
+    {
+        return NULL;
+    }
+    return lista->no_head;
+}
+
 bool lista_inserir(LISTA *lista, void *valor)
 {
     if (lista == NULL || valor == NULL)
@@ -132,6 +141,9 @@ void lista_imprimir(LISTA *lista, void* (*imprimir_valor)(void *))
     }
 
     NO *atual = lista->no_head;
+
+    atual = no_get_anterior(atual);
+
 
     while (atual != NULL)
     {
