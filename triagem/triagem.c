@@ -73,3 +73,10 @@ bool triagem_inserir(TRIAGEM *triagem, PACIENTE *paciente)
 		return fila_inserir(triagem->fila, paciente);
 	return false;
 }
+
+NO* triagem_get_inicio(TRIAGEM *triagem) {
+    if (triagem != NULL && triagem->fila != NULL) {
+        return fila_get_inicio(triagem->fila);
+    }
+    return NULL;
+}

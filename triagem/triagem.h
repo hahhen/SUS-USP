@@ -16,5 +16,6 @@
     int triagem_tamanho(TRIAGEM *triagem);
     void triagem_imprimir(TRIAGEM *triagem);
     void triagem_apagar(TRIAGEM **triagem);
+    NO* triagem_get_inicio(TRIAGEM *triagem);
 
 #endif

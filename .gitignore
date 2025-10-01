@@ -1,5 +1,7 @@
 build
 main
+*.exe
 c_cpp_properties.json
 settings.json
 vgcore*
+*.dat

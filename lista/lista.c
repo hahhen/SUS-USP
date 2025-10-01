@@ -142,6 +142,9 @@ void lista_imprimir(LISTA *lista, void* (*imprimir_valor)(void *))
 
     NO *atual = lista->no_head;
 
+    atual = no_get_anterior(atual);
+
+
     while (atual != NULL)
     {
         printf("Paciente: %s\n", (char*)imprimir_valor(no_get_valor(atual)));

@@ -1,4 +1,5 @@
 #include "historico.h"
+#include "../no/no.h"
 #include "../pilha/pilha.h"
 #include <string.h>
 #include <stdio.h>
@@ -25,8 +26,6 @@ HISTORICO *historico_criar()
         free(historico); 
         return NULL;
     }
-
-    printf("Criando historico\n");
 
     return historico;
 }
@@ -167,6 +166,22 @@ char *historico_listar(HISTORICO *historico)
 
     return lista;
 }
+
+
+int historico_tamanho(HISTORICO *historico) {
+    if (historico && historico->h) {
+        return pilha_tamanho(historico->h);
+    }
+    return 0;
+}
+
+NO* historico_get_topo(HISTORICO *historico) {
+    if (historico && historico->h) {
+        return pilha_topo(historico->h);
+    }
+    return NULL;
+}
+
 
 // Função para calcular tamanho total necessário
 size_t historico_calcular_tamanho_total(HISTORICO *historico)

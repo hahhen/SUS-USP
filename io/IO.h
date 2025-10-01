@@ -5,8 +5,8 @@
 #include "../triagem/triagem.h"
 #include <stdbool.h>
 
-bool SAVE(LISTA_PACIENTES *lista, TRIAGEM *triagem, const char* nome_arquivo);
+bool SAVE(LISTA_PACIENTES *lista, TRIAGEM *triagem);
 
-bool LOAD(LISTA_PACIENTES *lista, TRIAGEM *triagem, const char* nome_arquivo);
+bool LOAD(LISTA_PACIENTES *lista, TRIAGEM *triagem);
 
 #endif

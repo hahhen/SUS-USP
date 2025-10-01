@@ -79,6 +79,13 @@ int lista_pacientes_tamanho(LISTA_PACIENTES *lista)
     return -1;
 }
 
+NO *lista_pacientes_get_inicio(LISTA_PACIENTES *lista) {
+    if (lista != NULL && lista->l != NULL) {
+        return lista_get_no_head(lista->l);
+    }
+    return NULL;
+}
+
 bool lista_pacientes_apagar(LISTA_PACIENTES **lista)
 {
     if (lista != NULL && *lista != NULL)

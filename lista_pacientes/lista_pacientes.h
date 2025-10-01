@@ -15,6 +15,8 @@ void *lista_pacientes_busca(LISTA_PACIENTES *lista, void *chave);
 void lista_pacientes_imprimir(LISTA_PACIENTES *lista);
 bool lista_pacientes_busca_id_e_adiciona_procedimento(LISTA_PACIENTES *lista, int id, char* procedimento);
 int lista_pacientes_tamanho(LISTA_PACIENTES *lista);
+NO *lista_pacientes_get_inicio(LISTA_PACIENTES *lista);
+bool lista_pacientes_apagar(LISTA_PACIENTES **lista);
 
 #endif
 
