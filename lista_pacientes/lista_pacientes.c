@@ -35,6 +35,14 @@ bool lista_pacientes_inserir(LISTA_PACIENTES *lista, PACIENTE* paciente)
     return false;
 }
 
+bool lista_pacientes_busca_id_e_adiciona_procedimento(LISTA_PACIENTES *lista, int id, char* procedimento){
+    PACIENTE* p = lista_pacientes_busca(lista, id);
+
+    if(p == NULL) return false;
+
+    return paciente_adicionar_procedimento(p, procedimento);
+}
+
 bool lista_pacientes_remover(LISTA_PACIENTES *lista, int chave)
 {
     if (lista != NULL && lista->l != NULL)
