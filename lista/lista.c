@@ -1,6 +1,7 @@
 
 #include "./lista.h"
 #include "../no/no.h"
+#include "../paciente/paciente.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -50,7 +51,6 @@ bool lista_inserir(LISTA *lista, void *valor)
     {
         return false;
     }
-
     if (lista->no_head == NULL)
     {
         lista->no_head = novo_no;
@@ -58,6 +58,11 @@ bool lista_inserir(LISTA *lista, void *valor)
     else
     {
         NO *atual = lista->no_head;
+
+        // no_set_anterior(atual, novo_no);
+
+        // lista->no_head = novo_no;
+
         while (no_get_anterior(atual) != NULL)
         {
             atual = no_get_anterior(atual);
@@ -183,14 +188,7 @@ bool lista_cheia(LISTA *lista)
     return false;
 }
 
-NO* lista_get_no_head(LISTA* lista){
-    if(lista != NULL){
-        return lista->no_head;
-    }
-    return NULL;
-}
-
-void *lista_busca(LISTA *lista, void *chave, void *(*get_valor)(void *), bool(funcao_comparar)(void *, void *))
+void *lista_busca(LISTA *lista, int chave, int (*get_valor)(void *))
 {
     if (lista == NULL || lista->tamanho == 0)
     {
@@ -201,21 +199,28 @@ void *lista_busca(LISTA *lista, void *chave, void *(*get_valor)(void *), bool(fu
 
     while (atual != NULL)
     {
-        printf("valor atual: %s\n", (char*)get_valor(no_get_valor(atual)));
-        printf("chave: %s\n", (char*)chave);
-        printf("comparacao: %d\n", (int)funcao_comparar(get_valor(no_get_valor(atual)), chave));
+        //printf("valor atual: %x\n", atual);
+        //printf("chave: %d\n", chave);
 
-        int comparacao = (int)funcao_comparar(get_valor(no_get_valor(atual)), chave);
 
-        if (comparacao == 0)
+        // printf("Anterior ao nó: %s\n", (char*)get_valor(no_get_anterior(atual)));
+
+        int comparacao = get_valor(no_get_valor(atual)) == chave;
+        //printf("comparacao: %d\n", comparacao);
+
+    //     // int comparacao = 0;
+
+        if (comparacao == 1)
         {
-            printf("Busca: encontrado\n");
+           // printf("Busca: encontrado\n");
             return no_get_valor(atual);
         }
+
+
         atual = no_get_anterior(atual);
     }
 
-    printf("Busca: nao encontrou\n");
+    // printf("Busca: nao encontrou\n");
 
     return NULL;
 }

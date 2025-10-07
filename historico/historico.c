@@ -23,13 +23,12 @@ HISTORICO *historico_criar()
     historico->h = pilha_criar();
     if (historico->h == NULL)
     {
-        free(historico); 
+        free(historico);
         return NULL;
     }
 
     return historico;
 }
-
 
 // Limpa o histórico, apagando-o em seguida
 void historico_apagar(HISTORICO **historico)
@@ -46,10 +45,10 @@ void historico_apagar(HISTORICO **historico)
 
     // Libera o histórico
     free(*historico);
-
 }
 
-bool historico_vazio(HISTORICO *historico){
+bool historico_vazio(HISTORICO *historico)
+{
     return pilha_vazia(historico->h);
 }
 
@@ -125,8 +124,13 @@ char *historico_concatenar(char *destino, char *origem)
 
 char *historico_listar(HISTORICO *historico)
 {
+
+    //printf("Histórico listar debug\n");
+
     if (historico == NULL)
         return NULL;
+
+    //printf("historico nao nulo\n");
 
     NO *no = pilha_topo(historico->h);
     char *lista = NULL;
@@ -167,21 +171,23 @@ char *historico_listar(HISTORICO *historico)
     return lista;
 }
 
-
-int historico_tamanho(HISTORICO *historico) {
-    if (historico && historico->h) {
+int historico_tamanho(HISTORICO *historico)
+{
+    if (historico && historico->h)
+    {
         return pilha_tamanho(historico->h);
     }
     return 0;
 }
 
-NO* historico_get_topo(HISTORICO *historico) {
-    if (historico && historico->h) {
+NO *historico_get_topo(HISTORICO *historico)
+{
+    if (historico && historico->h)
+    {
         return pilha_topo(historico->h);
     }
     return NULL;
 }
-
 
 // Função para calcular tamanho total necessário
 size_t historico_calcular_tamanho_total(HISTORICO *historico)

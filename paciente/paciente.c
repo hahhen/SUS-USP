@@ -41,7 +41,7 @@ PACIENTE *paciente_criar(char *nome, int id)
 
     paciente->id = id;
 
-    printf("Criando paciente: %s (ID: %d)\n", paciente->nome, paciente->id);
+    //printf("Criando paciente: %s (ID: %d)\n", paciente->nome, paciente->id);
 
     return paciente;
 }

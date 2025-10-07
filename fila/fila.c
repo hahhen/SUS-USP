@@ -143,9 +143,4 @@ NO* fila_get_inicio(FILA *fila) {
         return fila->inicio;
     }
     return NULL;
-
-NO* fila_get_inicio(FILA *fila){
-    if(fila == NULL || fila_vazia(fila)){
-        return NULL;
-    }
-    return fila->inicio;
+}

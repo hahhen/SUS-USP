@@ -51,7 +51,7 @@ bool lista_pacientes_remover_procedimento(LISTA_PACIENTES *lista, int id){
     return paciente_remover_procedimento(p);
 }
 
-bool lista_pacientes_remover(LISTA_PACIENTES *lista, int chave)
+bool lista_pacientes_remover(LISTA_PACIENTES *lista, void *chave)
 {
     if (lista != NULL && lista->l != NULL)
     {
@@ -60,11 +60,15 @@ bool lista_pacientes_remover(LISTA_PACIENTES *lista, int chave)
     return false;
 }
 
+bool comparar_id_paciente(void* id1, void* id2){
+    return (*(int*)id1) == (*(int*)id2);
+}
+
 void *lista_pacientes_busca(LISTA_PACIENTES *lista, void *chave)
 {
     if (lista != NULL && lista->l != NULL)
     {
-        return lista_busca(lista->l, chave, paciente_get_nome, strcmp);
+        return lista_busca(lista->l, chave, paciente_get_id);
     }
     return NULL;
 }
@@ -100,7 +104,7 @@ bool lista_pacientes_apagar(LISTA_PACIENTES **lista)
     {
         if ((*lista)->l != NULL)
         {
-            lista_apagar(&((*lista)->l), paciente_remover_ponteiro);
+            lista_apagar(&((*lista)->l), paciente_remover);
         }
         free(*lista);
         *lista = NULL;
