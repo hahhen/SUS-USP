@@ -38,6 +38,8 @@ bool lista_pacientes_inserir(LISTA_PACIENTES *lista, PACIENTE* paciente)
 bool lista_pacientes_busca_id_e_adiciona_procedimento(LISTA_PACIENTES *lista, int id, char* procedimento){
     PACIENTE* p = lista_pacientes_busca(lista, id);
 
+    // printf("DEBUG: paciente encontrado: %x\n", p);
+
     if(p == NULL) return false;
 
     return paciente_adicionar_procedimento(p, procedimento);

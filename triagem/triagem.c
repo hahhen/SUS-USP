@@ -62,6 +62,8 @@ PACIENTE *triagem_remover(TRIAGEM *triagem)
 	if (triagem != NULL && !triagem_vazia(triagem))
 	{
 		PACIENTE *paciente = fila_remover(triagem->fila);
+		set_esta_em_triagem(paciente, false);
+		printf("Paciente %s (ID: %d) removido da triagem (%d).\n", paciente_get_nome(paciente), paciente_get_id(paciente), get_esta_em_triagem(paciente));
 		return paciente;
 	}
 	return NULL;
@@ -70,7 +72,10 @@ PACIENTE *triagem_remover(TRIAGEM *triagem)
 bool triagem_inserir(TRIAGEM *triagem, PACIENTE *paciente)
 {
 	if (triagem != NULL && !triagem_cheia(triagem) && paciente != NULL)
+	{
+		set_esta_em_triagem(paciente, true);
 		return fila_inserir(triagem->fila, paciente);
+	}
 	return false;
 }
 

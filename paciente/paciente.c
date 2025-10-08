@@ -3,15 +3,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 struct Paciente
 {
     char *nome;
     int id;
+    bool esta_em_triagem;
     HISTORICO *historico;
 };
 
-PACIENTE *paciente_criar(char *nome, int id)
+PACIENTE *paciente_criar(char *nome, int id, bool esta_em_triagem)
 {
     PACIENTE *paciente = (PACIENTE *)calloc(1, sizeof(PACIENTE));
 
@@ -19,6 +21,8 @@ PACIENTE *paciente_criar(char *nome, int id)
         return NULL;
 
     paciente->nome = (char *)malloc(strlen(nome) + 1);
+    paciente->esta_em_triagem = esta_em_triagem;
+    
 
     if (paciente->nome == NULL)
     {
@@ -70,6 +74,11 @@ HISTORICO *paciente_get_historico(PACIENTE *paciente)
     return paciente->historico;
 }
 
+void set_esta_em_triagem(PACIENTE* paciente, bool status){
+    if(paciente == NULL) return;
+    paciente->esta_em_triagem = status;
+}
+
 bool paciente_adicionar_procedimento(PACIENTE *paciente, char *procedimento)
 {
     if (paciente == NULL || strlen(procedimento) == 0 || paciente->historico == NULL)
@@ -110,6 +119,11 @@ void paciente_listar_procedimentos(PACIENTE *paciente)
         free(lista_procedimentos);
         lista_procedimentos = NULL;
     }
+}
+
+bool get_esta_em_triagem(PACIENTE* paciente){
+    if(paciente == NULL) return false;
+    return paciente->esta_em_triagem;
 }
 
 void paciente_remover(PACIENTE **paciente)

@@ -152,7 +152,7 @@ void lista_imprimir(LISTA *lista, void* (*imprimir_valor)(void *))
 
     while (atual != NULL)
     {
-        printf("Paciente: %s\n", (char*)imprimir_valor(no_get_valor(atual)));
+        printf("Paciente: %s (%d)\n", (char*)imprimir_valor(no_get_valor(atual)),get_esta_em_triagem((PACIENTE*)no_get_valor(atual)));
         atual = no_get_anterior(atual);
     }
 }
@@ -199,8 +199,8 @@ void *lista_busca(LISTA *lista, int chave, int (*get_valor)(void *))
 
     while (atual != NULL)
     {
-        //printf("valor atual: %x\n", atual);
-        //printf("chave: %d\n", chave);
+        printf("LISTA BUSCA: valor atual: %x\n", atual);
+        printf("LISTA BUSCA: chave: %d\n", chave);
 
 
         // printf("Anterior ao nó: %s\n", (char*)get_valor(no_get_anterior(atual)));

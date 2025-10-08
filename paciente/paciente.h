@@ -7,7 +7,7 @@
 
 typedef struct Paciente PACIENTE;
 
-PACIENTE* paciente_criar(char *nome, int id);
+PACIENTE* paciente_criar(char *nome, int id, bool esta_em_triagem);
 
 char *paciente_get_nome(PACIENTE *paciente);
 
@@ -22,6 +22,10 @@ bool paciente_remover_procedimento(PACIENTE *paciente);
 void paciente_listar_procedimentos(PACIENTE *paciente);
 
 void paciente_remover_ponteiro(PACIENTE* paciente);
+
+bool get_esta_em_triagem(PACIENTE* paciente);
+
+void set_esta_em_triagem(PACIENTE* paciente, bool status);
 
 void paciente_remover(PACIENTE **paciente);
 

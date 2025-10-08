@@ -19,6 +19,8 @@ int main(void){
     triagem_imprimir(triagem);
     lista_pacientes_imprimir(lista_pac);
 
+    printf("DEBUG: teste busca id 1: %x\n", lista_pacientes_busca(lista_pac, 1));
+
     printf("DEBUG: valor no head lista: %x\n", no_get_valor(lista_get_no_head(lista_pac)));
 
     while(1){
@@ -44,7 +46,7 @@ int main(void){
                 printf("Paciente com esse id já existe\n");
                 continue;
             }
-            PACIENTE* atual = paciente_criar(nome,id);
+            PACIENTE* atual = paciente_criar(nome,id, true);
             bool foi = lista_pacientes_inserir(lista_pac,atual);
             if(!foi){
                 printf("Memória cheia, inserção mal-sucedida\n");

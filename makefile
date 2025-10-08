@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -std=c99
-INCLUDES = -I$(PILHA_DIR) -I$(NO_DIR) -I$(HISTORICO_DIR) -I$(PACIENTE_DIR) -I$(FILA_DIR) -I$(LISTA_DIR) -I$(TRIAGEM_DIR) -I$(LISTA_PACIENTES_DIR) -I$(IO_DIR)
+INCLUDES = -I./pilha -I./no
 
 BUILD_DIR = ./build
 SRC_DIR = ./src
@@ -14,8 +14,7 @@ TRIAGEM_DIR = ./triagem
 LISTA_PACIENTES_DIR = ./lista_pacientes
 IO_DIR = ./io
 
-C_FILES = $(wildcard *.c) $(wildcard $(NO_DIR)/*.c) $(wildcard $(PILHA_DIR)/*.c) $(wildcard $(HISTORICO_DIR)/*.c) $(wildcard $(PACIENTE_DIR)/*.c) $(wildcard $(FILA_DIR)/*.c) $(wildcard $(TRIAGEM_DIR)/*.c) $(wildcard $(LISTA_DIR)/*.c) $(wildcard $(LISTA_PACIENTES_DIR)/*.c)  $(wildcard $(IO_DIR)/*.c)
-
+C_FILES = $(wildcard *.c) $(wildcard $(NO_DIR)/*.c) $(wildcard $(PILHA_DIR)/*.c) $(wildcard $(HISTORICO_DIR)/*.c) $(wildcard $(PACIENTE_DIR)/*.c) $(wildcard $(FILA_DIR)/*.c) $(wildcard $(TRIAGEM_DIR)/*.c) $(wildcard $(LISTA_DIR)/*.c) $(wildcard $(LISTA_PACIENTES_DIR)/*.c) $(wildcard $(IO_DIR)/*.c)
 OBJ_FILES = $(patsubst %.c, $(BUILD_DIR)/%.o, $(notdir $(C_FILES)))
 
 TARGET = main
