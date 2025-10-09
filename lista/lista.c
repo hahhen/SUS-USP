@@ -39,6 +39,7 @@ NO* lista_get_no_head(LISTA *lista)
     return lista->no_head;
 }
 
+// Com o objetivo de manter a ordem, insere no final da lista, O(n)
 bool lista_inserir(LISTA *lista, void *valor)
 {
     if (lista == NULL || valor == NULL)
@@ -188,6 +189,7 @@ bool lista_cheia(LISTA *lista)
     return false;
 }
 
+// Usou-se uma função de callback para obter o valor do nó, permitindo flexibilidade na comparação
 void *lista_busca(LISTA *lista, int chave, int (*get_valor)(void *))
 {
     if (lista == NULL || lista->tamanho == 0)

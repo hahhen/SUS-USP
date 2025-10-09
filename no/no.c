@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*Nó é uma estrutura genérica, seu valor pode apontar para qualquer coisa. Os TADs que o manipulam são, portanto, genéricos também. Assim, cada um desses TADs foi "englobado" por um TAD que manipula um tipo específico de dado. Ex: Nó <- lista <- lista_pacientes */
 struct No {
     void* valor;
     NO* anterior;
@@ -38,6 +39,7 @@ void no_remover(NO **no) {
     }
 }
 
+/*Método alternativo para remoção, pois um método get do TAD retorna um NO*, não NO**, e usar &no não funcionaria */
 void no_remover_ponteiro(NO *no) {
     if (no != NULL) {
         no->valor = NULL;

@@ -62,10 +62,7 @@ bool lista_pacientes_remover(LISTA_PACIENTES *lista, void *chave)
     return false;
 }
 
-bool comparar_id_paciente(void* id1, void* id2){
-    return (*(int*)id1) == (*(int*)id2);
-}
-
+// Retorna o ponteiro para o paciente com o ID especificado, ou NULL se não encontrado (busca linear, O(n))
 void *lista_pacientes_busca(LISTA_PACIENTES *lista, void *chave)
 {
     if (lista != NULL && lista->l != NULL)
@@ -115,6 +112,7 @@ bool lista_pacientes_apagar(LISTA_PACIENTES **lista)
     return false;
 }
 
+// Retorna o nó do início da lista de pacientes, usado por IO para salvar o estado da lista
 NO* lista_pacientes_get_no_head(LISTA_PACIENTES* lista){
     if(lista != NULL && lista->l != NULL){
         return lista_get_no_head(lista->l);

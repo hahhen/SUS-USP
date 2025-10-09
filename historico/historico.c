@@ -119,6 +119,7 @@ char *historico_concatenar(char *destino, char *origem)
     return novo_destino;
 }
 
+// Método para percorrer o histórico (pilha) e listar os procedimentos em ordem
 char *historico_listar(HISTORICO *historico)
 {
 
@@ -208,39 +209,4 @@ size_t historico_calcular_tamanho_total(HISTORICO *historico)
         tamanho_total += (count - 1);
 
     return tamanho_total;
-}
-
-char *historico_concatenar2(HISTORICO *historico)
-{
-    if (historico == NULL)
-        return NULL;
-
-    size_t tamanho_total = historico_calcular_tamanho_total(historico);
-    if (tamanho_total <= 1)
-        return NULL;
-
-    char *resultado = (char *)calloc(tamanho_total, sizeof(char));
-    if (resultado == NULL)
-        return NULL;
-
-    NO *no = pilha_topo(historico->h);
-    bool primeiro = true;
-
-    // printf("historico_concatenar2 debug\n");
-
-    while (no != NULL)
-    {
-        char *procedimento = (char *)no_get_valor(no);
-        if (procedimento != NULL)
-        {
-            if (!primeiro)
-                strcat(resultado, "\n");
-
-            strcat(resultado, procedimento);
-            primeiro = false;
-        }
-        no = no_get_anterior(no);
-    }
-
-    return resultado;
 }

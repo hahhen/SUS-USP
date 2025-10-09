@@ -62,7 +62,7 @@ PACIENTE *triagem_remover(TRIAGEM *triagem)
 	if (triagem != NULL && !triagem_vazia(triagem))
 	{
 		PACIENTE *paciente = fila_remover(triagem->fila);
-		set_esta_em_triagem(paciente, false);
+		set_esta_em_triagem(paciente, false); // marca que o paciente não está mais em triagem
 		printf("Paciente %s (ID: %d) removido da triagem (%d).\n", paciente_get_nome(paciente), paciente_get_id(paciente), get_esta_em_triagem(paciente));
 		return paciente;
 	}
@@ -79,6 +79,7 @@ bool triagem_inserir(TRIAGEM *triagem, PACIENTE *paciente)
 	return false;
 }
 
+// Retorna o nó do início da fila de triagem, usado por IO para salvar o estado da triagem
 NO* triagem_get_inicio(TRIAGEM *triagem) {
     if (triagem != NULL && triagem->fila != NULL) {
         return fila_get_inicio(triagem->fila);
@@ -104,7 +105,6 @@ void triagem_imprimir(TRIAGEM *triagem)
 		PACIENTE* paciente = (PACIENTE *)no_get_valor(no);
 		printf("ID: %d | NOME: %s", paciente_get_id(paciente), paciente_get_nome(paciente));
 		no = no_get_anterior(no);
-		// Adiciona quebra de linha se não for o último elemento
 		printf("\n");
 	}
 
