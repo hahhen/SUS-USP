@@ -15,13 +15,11 @@ int main(void){
     TRIAGEM* triagem = triagem_criar();
     LOAD(lista_pac,triagem);
 
-    printf("DEBUG:\ntriagem:");
-    triagem_imprimir(triagem);
-    lista_pacientes_imprimir(lista_pac);
-
-    printf("DEBUG: teste busca id 1: %x\n", lista_pacientes_busca(lista_pac, 1));
-
-    printf("DEBUG: valor no head lista: %x\n", no_get_valor(lista_get_no_head(lista_pac)));
+    // printf("DEBUG:\ntriagem:");
+    // triagem_imprimir(triagem);
+    // lista_pacientes_imprimir(lista_pac);
+    // printf("DEBUG: teste busca id 1: %x\n", lista_pacientes_busca(lista_pac, 1));
+    // printf("DEBUG: valor no head lista: %x\n", no_get_valor(lista_get_no_head(lista_pac)));
 
     while(1){
         printf("\n");
@@ -94,7 +92,7 @@ int main(void){
             }
             else{
                 PACIENTE* paciente = triagem_remover(triagem);
-                if(paciente != NULL){ //acho q aqui não precisa fazer essa checagem
+                if(paciente != NULL){
                     printf("Paciente %s chamado para atendimento.\n", paciente_get_nome(paciente));
                 }
             }
@@ -119,9 +117,8 @@ int main(void){
             break;
         }
     }
-    //finalizar o programa
     SAVE(lista_pac,triagem);
-    // lista_pacientes_apagar(&lista_pac);
-    // triagem_apagar(&triagem);
+    lista_pacientes_apagar(&lista_pac);
+    triagem_apagar(&triagem);
     return 0;
 }

@@ -91,7 +91,6 @@ bool historico_remover(HISTORICO *historico)
     return false;
 }
 
-// Função auxiliar para concatenar strings com gerenciamento de memória
 char *historico_concatenar(char *destino, char *origem)
 {
     if (origem == NULL)
@@ -99,14 +98,12 @@ char *historico_concatenar(char *destino, char *origem)
 
     if (destino == NULL)
     {
-        // Se destino é NULL, cria uma nova string
         char *nova = (char *)malloc(strlen(origem) + 1);
         if (nova != NULL)
             strcpy(nova, origem);
         return nova;
     }
 
-    // Realoca para comportar a concatenação
     size_t tamanho_atual = strlen(destino);
     size_t tamanho_origem = strlen(origem);
     size_t tamanho_total = tamanho_atual + tamanho_origem + 1;
@@ -114,7 +111,7 @@ char *historico_concatenar(char *destino, char *origem)
     char *novo_destino = (char *)realloc(destino, tamanho_total);
     if (novo_destino == NULL)
     {
-        free(destino); // Em caso de falha, libera a memória original
+        free(destino);
         return NULL;
     }
 
@@ -166,8 +163,6 @@ char *historico_listar(HISTORICO *historico)
 
     // printf("%s", lista);
 
-    // printf("historico_listar: debug\n");
-
     return lista;
 }
 
@@ -189,13 +184,12 @@ NO *historico_get_topo(HISTORICO *historico)
     return NULL;
 }
 
-// Função para calcular tamanho total necessário
 size_t historico_calcular_tamanho_total(HISTORICO *historico)
 {
     if (historico == NULL)
         return 0;
 
-    size_t tamanho_total = 1; // Para o '\0'
+    size_t tamanho_total = 1; 
     NO *no = pilha_topo(historico->h);
     int count = 0;
 
@@ -210,7 +204,6 @@ size_t historico_calcular_tamanho_total(HISTORICO *historico)
         no = no_get_anterior(no);
     }
 
-    // Adiciona espaço para quebras de linha (count - 1)
     if (count > 1)
         tamanho_total += (count - 1);
 

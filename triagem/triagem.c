@@ -93,6 +93,12 @@ void triagem_imprimir(TRIAGEM *triagem)
 
 	NO* no = fila_get_inicio(triagem->fila);
 
+	if(no == NULL) {
+		printf("Fila de espera vazia.\n");
+		return;
+	}
+
+	printf("Fila de espera (total: %d pacientes):\n", triagem_tamanho(triagem));
 	while (no != NULL)
 	{
 		PACIENTE* paciente = (PACIENTE *)no_get_valor(no);

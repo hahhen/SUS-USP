@@ -199,16 +199,13 @@ void *lista_busca(LISTA *lista, int chave, int (*get_valor)(void *))
 
     while (atual != NULL)
     {
-        printf("LISTA BUSCA: valor atual: %x\n", atual);
-        printf("LISTA BUSCA: chave: %d\n", chave);
-
-
+        // printf("LISTA BUSCA: valor atual: %x\n", atual);
+        // printf("LISTA BUSCA: chave: %d\n", chave);
         // printf("Anterior ao nó: %s\n", (char*)get_valor(no_get_anterior(atual)));
 
         int comparacao = get_valor(no_get_valor(atual)) == chave;
         //printf("comparacao: %d\n", comparacao);
-
-    //     // int comparacao = 0;
+        // int comparacao = 0;
 
         if (comparacao == 1)
         {
