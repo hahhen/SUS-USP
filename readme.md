@@ -1,5 +1,7 @@
 # Sistema de Gerenciamento de Pacientes - SUS-USP
 
+Desenvolvido por Arthur Santana, Arthur Martins e Gabriel Cordeiro.
+
 Este projeto é uma simulação de um sistema de gerenciamento de pacientes para uma unidade de saúde, desenvolvido em C. Ele permite o cadastro de pacientes, o gerenciamento de seus históricos de procedimentos médicos e o controle de uma fila de triagem para atendimento.
 
 O sistema foi projetado com foco em modularidade e reutilização de código, utilizando Tipos Abstratos de Dados (TADs) genéricos como base para as estruturas mais complexas.
