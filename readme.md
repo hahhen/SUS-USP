@@ -1,4 +1,4 @@
-# Sistema de Gerenciamento de Pacientes - SUS-USP
+# Sistema de Gerenciamento de Pacientes - SUSP
 
 Desenvolvido por Arthur Santana, Arthur Martins e Gabriel Cordeiro.
 
